@@ -1,0 +1,1 @@
+export type TypeEventWindow = 'minimize' | 'close' | 'restore';

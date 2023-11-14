@@ -1,0 +1,33 @@
+{
+  "name": "pngtubestudioapp",
+  "productName": "pngtubestudioapp",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": "app/main.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "eslint -c .eslintrc --ext .ts ./src",
+    "start": "npm run build && electron ./dist/main.js"
+  },
+  "keywords": [],
+  "author": {
+    "name": "PintoGamer64",
+    "email": "pintogamer64@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "electron-squirrel-startup": "1.0.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.4.2",
+    "@electron-forge/maker-deb": "6.4.2",
+    "@electron-forge/maker-rpm": "6.4.2",
+    "@electron-forge/maker-squirrel": "6.4.2",
+    "@electron-forge/maker-zip": "6.4.2",
+    "@electron-forge/plugin-auto-unpack-natives": "6.4.2",
+    "@types/node": "20.9.0",
+    "electron": "27.0.4",
+    "typescript": "5.2.2"
+  }
+}

@@ -1,0 +1,26 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  grid-template: "topbar topbar topbar" 30px
+    "main main main" calc(100vh - 100px)
+    "footer footer footer" 70px;
+}

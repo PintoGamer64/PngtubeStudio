@@ -2,4 +2,4 @@
 export type TypeEventWindow = 'minimize' | 'close' | 'restore';
 
 //Methods
-export type TypeEventWindo_Func = (typeEvent: TypeEventWindow) => void
+export type TypeEventWindow_Func = (typeEvent: TypeEventWindow) => void

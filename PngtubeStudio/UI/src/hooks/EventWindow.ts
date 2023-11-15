@@ -1,6 +1,6 @@
 import { PngtubeStudioAPI } from "../types/PngtubeStudioAPI";
 
-export default function WindowEvents() {
+export default function useWindowEvents() {
 
     //@ts-expect-error Conexion con Electron
     const { Events }: PngtubeStudioAPI = window.PngtubeStudioAPI;

@@ -6,10 +6,12 @@ let mainWindow: BrowserWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     height: 600,
+    width: 800,
+    movable: true,
+    titleBarStyle: "hidden",
     webPreferences: {
       preload: join(__dirname, "preload.js"),
-    },
-    width: 800,
+    }
   });
 
   mainWindow.loadFile(join(__dirname, "../compl/index.html"));
@@ -27,13 +29,17 @@ app.whenReady().then(() => {
 
 ipcMain.on('minimize', () => {
   mainWindow.minimize()
-})
+});
 ipcMain.on('close', () => {
   mainWindow.close()
-})
+});
 ipcMain.on('restore', () => {
   if (mainWindow.isMaximized()) return mainWindow.restore();
   return mainWindow.maximize();
+});
+
+ipcMain.on('moveWindow', (event, {x, y}) => {
+  mainWindow.setPosition(x, y, true)
 })
 
 app.on("window-all-closed", () => {

@@ -20,7 +20,9 @@ body {
 }
 
 #root {
-  grid-template: "topbar topbar topbar" 30px
-    "main main main" calc(100vh - 100px)
-    "footer footer footer" 70px;
+  display: grid;
+  grid-template:
+    "topbar topbar topbar"
+    "main main main"
+    "footer footer footer";
 }

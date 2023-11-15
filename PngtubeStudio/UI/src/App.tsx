@@ -1,11 +1,12 @@
-import './App.css'
-import Topbar from './components/topBar'
+import FooBar from './components/FooBar'
+import Topbar from './components/TopBar'
 
 function App() {
 
   return (
     <>
       <Topbar />
+      <FooBar />
     </>
   )
 }

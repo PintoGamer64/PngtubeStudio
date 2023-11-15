@@ -15,8 +15,15 @@ function EventWindow(typeEvent: TypeEventWindow) {
     ipcRenderer.send(typeEvent);
 }
 
+function moveWindow({ x, y }: any) {
+    ipcRenderer.send('moveWidndow', {
+        x, y
+    })
+}
+
 contextBridge.exposeInMainWorld("PngtubeStudioAPI", {
     Events: {
-        EventWindow
+        EventWindow,
+        moveWindow
     }
 })

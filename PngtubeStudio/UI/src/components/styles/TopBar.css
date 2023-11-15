@@ -14,11 +14,19 @@
     width: 100%;
     display: flex;
     height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
     align-items: center;
     justify-content: space-between;
 }
 
+.TopBar-Title,
+.TopBar-Title * {
+    -webkit-app-region: drag;
+}
+
 .TopBar-Title {
+    padding: 0 0 0 10px;
     width: calc(100% - 120px);
     max-width: calc(100% - 120px);
 }
@@ -30,9 +38,23 @@
 }
 
 .TopBar-Buttons-Icon {
+    border: none;
     display: grid;
     width: 40px;
     height: 30px;
     place-items: center;
     padding: 0 5px;
+    background: transparent;
+}
+
+#TopBar-Buttons-Minimize:hover {
+    background-color: #00000040;
+}
+
+#TopBar-Buttons-MaxMin:hover {
+    background-color: #2eb9ff;
+}
+
+#TopBar-Buttons-Close:hover {
+    background-color: #ff3939;
 }

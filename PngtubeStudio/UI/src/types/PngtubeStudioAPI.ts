@@ -1,7 +1,7 @@
-import { TypeEventWindo_Func } from "./WindowEvent"
+import { TypeEventWindow_Func } from "./WindowEvent"
 
 export type PngtubeStudioAPI = {
     Events: {
-        EventWindow: TypeEventWindo_Func
+        EventWindow: TypeEventWindow_Func
     }
 }

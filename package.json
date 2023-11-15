@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:APP": "npm start -w PngtubeStudio/App",
-    "build:UI": "npm run build -w PngtubeStudio/UI",
+    "start:app": "npm start -w PngtubeStudio/App",
+    "build:ui": "npm run build -w PngtubeStudio/UI",
     "test": "placeholder"
   },
   "workspaces": [

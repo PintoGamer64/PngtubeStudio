@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { UpdateVolume } from '../handlers/UpdateVolume';
+import { UpdateVolume } from '../helpers/UpdateVolume';
 
 export default function useMicrophone() {
 

@@ -11,6 +11,7 @@ function createWindow() {
     titleBarStyle: "hidden",
     webPreferences: {
       preload: join(__dirname, "preload.js"),
+      zoomFactor: 1
     }
   });
 
@@ -21,7 +22,6 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
-
   app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });

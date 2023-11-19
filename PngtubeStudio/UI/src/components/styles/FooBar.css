@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-#FooBar-Microphone > * {
+#FooBar-Microphone>* {
     margin: 0 2.5px;
 }
 
@@ -33,6 +33,10 @@
     background: #00000040;
 }
 
+#FooBar-Microphone-Controls {
+    width: 200px;
+}
+
 #FooBar-Microphone-Visualizer {
     position: relative;
     display: flex;
@@ -44,7 +48,7 @@
 
 #FooBar-Microphone-Visualizer-Level {
     position: absolute;
-    outline: 1px solid #000000;
+    outline: 1px solid #000000
 }
 
 #FooBar-Microphone-Visualizer-Slider {
@@ -54,14 +58,84 @@
     height: 20px;
     max-width: 100%;
     max-height: 100%;
+    -moz-appearance: none;
     appearance: none;
     background-color: transparent;
     margin: 0;
+    cursor: pointer;
 }
 
 #FooBar-Microphone-Visualizer-Slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 5px;
     height: 20px;
-    background-color: #000000;
-  }
+    background: #000000;
+    transition: all .2s;
+}
+
+#FooBar-Microphone-Visualizer-Slider:hover::-webkit-slider-thumb {
+    background: linear-gradient(transparent 0 20%,#000000 20% 80%,transparent 80% 100%)
+}
+
+#FooBar-Microphone-Amplifier {
+    width: 200px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+}
+
+#FooBar-Microphone-Amplifier-Slider {
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 0;
+    box-sizing: border-box;
+    width: 200px;
+    outline: 1px solid #000;
+    margin: 0;
+    overflow: visible;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+#FooBar-Microphone-Amplifier-Slider:hover {
+    height: 10px;
+    transition: all .2s ease;
+}
+
+#FooBar-Microphone-Amplifier-Slider:hover:before,
+#FooBar-Microphone-Amplifier-Slider:hover:after{
+    top: 0px;
+    transition: all .2s ease;
+}
+
+#FooBar-Microphone-Amplifier-Slider:before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -1px;
+    width: 2px;
+    height: 10px;
+    background: #000;
+    transition: all .2s ease;
+}
+
+#FooBar-Microphone-Amplifier-Slider:after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: calc(100% - 1px);
+    width: 2px;
+    height: 10px;
+    background: #000;
+    transition: all .2s ease;
+}
+
+#FooBar-Microphone-Amplifier-Slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 5px;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #ffffff 30%, #000 30% 100%)
+}

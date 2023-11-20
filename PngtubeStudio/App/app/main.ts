@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
+import AppEvents from "./api/AppEvent";
 
 let mainWindow: BrowserWindow;
 
@@ -24,26 +25,13 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
-  mainWindow.webContents.zoomLevel = 1;
   app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
-ipcMain.on('minimize', () => {
-  mainWindow.minimize()
-});
-ipcMain.on('close', () => {
-  mainWindow.close()
-});
-ipcMain.on('restore', () => {
-  if (mainWindow.isMaximized()) return mainWindow.restore();
-  return mainWindow.maximize();
-});
-
-ipcMain.on('moveWindow', (event, {x, y}) => {
-  mainWindow.setPosition(x, y, true)
-})
+// Ipc Events
+AppEvents(ipcMain, mainWindow);
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

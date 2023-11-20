@@ -1,0 +1,16 @@
+{
+    "imagesPath": "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Resources",
+    "wallpapersPath": "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Wallpapers",
+    "userModel": "Ookami",
+    "models": "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Models",
+    "appConfig": {
+        "hardwareAcceleration": true,
+        "trayMenu": true
+    },
+    "appBackground": {
+        "type": "Color",
+        "colorBackground": "#00ff00",
+        "wallpaper": "Facebook",
+        "brightness": "100"
+    }
+}

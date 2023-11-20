@@ -1,6 +1,6 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
-import AppEvents from "./api/AppEvent";
+import PngtubeStudioAPI from "./api/PngtubeAPI";
 
 let mainWindow: BrowserWindow;
 
@@ -24,17 +24,28 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  // Create Window
   createWindow();
   app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
-// Ipc Events
-AppEvents(ipcMain, mainWindow);
-
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
   }
 });
+
+// Ipc Events
+ipcMain.on('minimize', () => {
+  mainWindow.minimize()
+});
+ipcMain.on('close', () => {
+  mainWindow.close()
+});
+ipcMain.on('restore', () => {
+  if (mainWindow.isMaximized()) return mainWindow.restore();
+  return mainWindow.maximize();
+});
+PngtubeStudioAPI()

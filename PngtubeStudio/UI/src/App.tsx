@@ -11,6 +11,7 @@ function App() {
   const { Get }: PngtubeStudioAPI = window.PngtubeStudioAPI;
 
   console.log(Get.Models('getModels'));
+  
 
   return (
     <>

@@ -2,10 +2,9 @@
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
 // Modules
-import { contextBridge, ipcRenderer, app } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
 // Types
 import { TypeEventModels, TypeEventWindow } from "./consts";
-import { type } from "os";
 
 /**
  * Ejecuta eventos principales de la ventana
@@ -16,7 +15,7 @@ function EventWindow(typeEvent: TypeEventWindow) {
 }
 
 function Models(typeEvent: TypeEventModels) {
-    return ipcRenderer.send(typeEvent);
+    return ipcRenderer.sendSync(typeEvent);
 }
 
 contextBridge.exposeInMainWorld("PngtubeStudioAPI", {

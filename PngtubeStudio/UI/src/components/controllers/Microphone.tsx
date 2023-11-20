@@ -61,7 +61,7 @@ export default function Microphone() {
                             })
                         }}
                         style={{
-                            background: `linear-gradient(90deg, rgba(0,255,240,1) 0% ${(amplifier.current / 200) * 100}%, rgba(0,17,255,1) ${(amplifier.current / 200) * 100}%, rgba(255,255,255,1) ${(amplifier.current / 200) * 100}% 100%)`
+                            background: `linear-gradient(90deg, rgba(0,255,240,1) 0%, rgba(0,17,255,1) ${(amplifier.current / 200) * 100}%, rgba(255,255,255,1) ${(amplifier.current / 200) * 100}%)`
                         }} />
                 </div>
                 <div id="FooBar-Microphone-Visualizer">

@@ -1,10 +1,10 @@
-import { AvarageLevels } from "../constants";
 import { UpdateCanvasVolume } from "../types/helpers";
 
 export default function UpdateCanvasVolume({
     AudioState,
     Volume,
     Audio,
+    sensibility,
     canvasLevelRef,
     amplifier
 }: UpdateCanvasVolume
@@ -16,13 +16,10 @@ export default function UpdateCanvasVolume({
         const canvasLevel = canvasLevelRef.current;
         const ctxLevel = canvasLevel.getContext("2d")!;
 
-        if (Volume > AvarageLevels.LOW) {
+        if ((Volume / amplifier.current) * 100 < (sensibility.current / 100) * 100) {
             ctxLevel.fillStyle = "#41AF2E";
         }
-        if (Volume > AvarageLevels.HALF) {
-            ctxLevel.fillStyle = "#FFFF00";
-        }
-        if (Volume > AvarageLevels.HIGH) {
+        if ((Volume / amplifier.current) * 100 > (sensibility.current / 100) * 100) {
             ctxLevel.fillStyle = "#FF0000";
         }
 

@@ -5,8 +5,10 @@ let mainWindow: BrowserWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+    width: 1280,
+    height: 720,
+    minWidth: 1280,
+    minHeight: 720,
     movable: true,
     titleBarStyle: "hidden",
     webPreferences: {
@@ -22,6 +24,7 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
+  mainWindow.webContents.zoomLevel = 1;
   app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });

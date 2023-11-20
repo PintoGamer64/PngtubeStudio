@@ -5,7 +5,7 @@
     grid-area: topbar;
     align-items: center;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 5px;
     justify-content: space-between;
 }
 
@@ -22,6 +22,7 @@
 
 .TopBar-Title,
 .TopBar-Title * {
+    font-size: large;
     -webkit-app-region: drag;
 }
 

@@ -21,5 +21,5 @@ These are the wireframes ***pending to submit***.
 
 #### *Available Scripts: Frontend*
 
-- **`start:APP`** initialize the Electron model with the react build *(For development)*
-- **`build:UI`** generates a build of the UI created with ReactJs *(Required to develop and compile)*
+- **`start:app`** initialize the Electron model with the react build *(For development)*
+- **`build:ui`** generates a build of the UI created with ReactJs *(Required to develop and compile)*

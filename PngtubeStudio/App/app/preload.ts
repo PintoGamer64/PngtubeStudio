@@ -4,7 +4,7 @@
 // Modules
 import { contextBridge, ipcRenderer } from "electron";
 // Types
-import { TypeEventModels, TypeEventWindow } from "./consts";
+import { TypeEventModels, TypeEventWindow } from "./types";
 
 /**
  * Ejecuta eventos principales de la ventana

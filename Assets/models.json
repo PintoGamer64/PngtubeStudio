@@ -7,14 +7,8 @@
         "modelImage": "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Models\\Ookami\\Ookami.png",
         "modelData": {
             "States": [
-                {
-                    "first": "Ookami",
-                    "last": "Ookami2"
-                },
-                {
-                    "first": "Ranka",
-                    "last": "Ranka2"
-                }
+                ["Ookami", "Ookami2"],
+                ["Ranka", "Ranka2"]
             ]
         },
         "modelURL": "https://github.com/PintoGamer64"

@@ -1,15 +1,18 @@
 // Node Modules
-import { mkdirSync, writeFileSync, existsSync, copyFileSync, readdirSync } from "node:fs";
+import { mkdirSync, writeFileSync, existsSync, createWriteStream, unlink } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { get } from 'node:https';
 
 // Types
 import { TypeBaseConfig, TypeModelsConfig } from "./types";
+import { DownloadResourcesLink, pathsConfig } from "./constants";
 
 export default function InitProcess() {
-    let baseConfig: TypeBaseConfig = {
+    const baseConfig: TypeBaseConfig = {
         Resources: `${join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Resources')}`,
         Wallpapers: `${join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Wallpapers')}`,
+        Avatars: `${join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars')}`,
         Model: 'Ookami',
         Config: {
             hardwareAcceleration: true,
@@ -21,74 +24,74 @@ export default function InitProcess() {
                 brightness: 100
             }
         }
-    };
-    let modelsConfig: TypeModelsConfig = [
-        {
-            Id: 1,
-            Name: "Ookami",
-            Owner: "PintoGamer64",
-            Date: "2023-03-15T05:00:00.000Z",
-            Image: "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Models\\Ookami\\Ookami.png",
-            Data: {
-                States: [
-                    ["Ookami", "Ookami2"]
-                ]
-            },
-            URL: ""
-        }
-    ];
-    let resources = readdirSync(join(__dirname, '\\resources'));
-    let pathsConfig = [
-        {
-            data: join(homedir(), 'AppData\\Roaming\\PNGtubeSettings')
-        },
-        {
-            data: join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Models')
-        },
-        {
-            data: join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Resources')
-        },
-        {
-            data: join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Wallpapers')
-        }
-    ]
+    },
+        modelsConfig: TypeModelsConfig = [
+            {
+                Id: 1,
+                Name: "Ookami",
+                Owner: "PintoGamer64",
+                Date: "2023-03-15T05:00:00.000Z",
+                Image: "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami\\Ookami.png",
+                Data: {
+                    States: [
+                        ["Ookami", "Ookami2"]
+                    ]
+                },
+                URL: "https://github.com/PintoGamer64"
+            }
+        ];
+
     // Create the main directories to set the app config
-    function CreateConfigDirectories() {
-        for (let paths of pathsConfig) {
-            if (!existsSync(paths.data)) {
-                mkdirSync(paths.data);
-            }
-        }
+    function CreateConfigDirectories(): void {
+        pathsConfig.map(path => {
+            if (!existsSync(path)) mkdirSync(path);
+        })
     };
-    function CreateConfigBase() {
-        if (!existsSync(join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings.json'))) {
-            writeFileSync(
-                join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings.json'),
-                JSON.stringify(baseConfig, null, 4),
-                { encoding: "utf-8" }
-            );
-        }
+    function CreateConfigBase(): void {
+        const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings.json')
+
+        !existsSync(searchPath) && writeFileSync(
+            searchPath,
+            JSON.stringify(baseConfig, null, 4),
+            { encoding: "utf-8" }
+        );
     };
-    function CreateConfigModels() {
-        if (!existsSync(join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Models\\models.json'))) {
-            writeFileSync(
-                join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Models\\models.json'),
-                JSON.stringify(modelsConfig, null, 4),
-                { encoding: "utf-8" }
-            );
-        }
+    function CreateConfigModels(): void {
+        const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json')
+
+        !existsSync(searchPath) && writeFileSync(
+            searchPath,
+            JSON.stringify(modelsConfig, null, 4),
+            { encoding: "utf-8" }
+        );
     }
-    function CreateResources() {
-        for (let file of resources) {
-            if (!existsSync(join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Resources', file))) {
-                copyFileSync(
-                    join(__dirname, '\\resources', file),
-                    join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Resources', file)
-                );
+    function CreateResources(): void {
+        DownloadResourcesLink.map((Download) => {
+            const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Resources', Download.file)
+            if (!existsSync(searchPath)) {
+                const archivoStream = createWriteStream(searchPath);
+
+                get(Download.url, (response) => {
+                    if (response.statusCode !== 200) return;
+
+                    response.pipe(archivoStream)
+
+                    archivoStream.on('finish', () => {
+                        console.log('Archivo descargado y copiado con éxito');
+                    });
+
+                    archivoStream.on('error', (err) => {
+                        unlink(searchPath, () => {
+                            console.error('Error al escribir el archivo:', err);
+                        });
+                    });
+                }).on('error', (err) => {
+                    console.error('Error al descargar el archivo:', err);
+                });
             }
-        }
+        })
     }
-    function __Init__() {
+    function __Init__(): void {
         CreateConfigDirectories();
         CreateConfigBase();
         CreateConfigModels();

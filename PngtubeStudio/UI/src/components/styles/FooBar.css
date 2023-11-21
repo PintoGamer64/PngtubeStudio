@@ -5,6 +5,7 @@
     max-height: 50px;
     display: flex;
     grid-area: footer;
+    z-index: 2;
     align-items: center;
     justify-content: center
 }
@@ -17,9 +18,9 @@
     align-items: center;
     justify-content: space-evenly;
     height: 40px;
-    background-color: #00000020;
-    box-sizing: border-box;
-    margin: 5px
+    background-color: #ffffff;
+    margin: 5px;
+    padding: 2.5px 0;
 }
 
 #FooBar-Microphone>* {
@@ -170,7 +171,7 @@
     padding: 7.5px;
     width: 150px;
     top: -125%;
-    background-color: #00000020;
+    background-color: #ffffff;
     justify-content: center;
     align-items: center
 }

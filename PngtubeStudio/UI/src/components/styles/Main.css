@@ -1,5 +1,16 @@
 #Main {
+    z-index: 1;
     width: 100%;
     height: calc(100vh - 100px);
     grid-area: main;
+}
+
+#ModelViewer {
+    z-index: 0;
+    background: rgb(0, 255, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }

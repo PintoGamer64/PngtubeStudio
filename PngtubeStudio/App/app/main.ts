@@ -1,8 +1,11 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import PngtubeStudioAPI from "./api/PngtubeAPI";
+import InitProcess from "./init";
 
 let mainWindow: BrowserWindow;
+
+InitProcess().__Init__()
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -20,7 +23,7 @@ function createWindow() {
 
   mainWindow.loadFile(join(__dirname, "../compl/index.html"));
 
-  mainWindow.webContents.openDevTools();
+  /* mainWindow.webContents.openDevTools(); */
 }
 
 app.whenReady().then(() => {

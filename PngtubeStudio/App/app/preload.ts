@@ -4,7 +4,7 @@
 // Modules
 import { contextBridge, ipcRenderer } from "electron";
 // Types
-import { TypeEventModels, TypeEventWindow } from "./types";
+import { TypeEventModels, TypeEventSettings, TypeEventWindow } from "./types";
 
 /**
  * Ejecuta eventos principales de la ventana
@@ -18,11 +18,16 @@ function Models(typeEvent: TypeEventModels) {
     return ipcRenderer.sendSync(typeEvent);
 }
 
+function Settings(typeEvent: TypeEventSettings) {
+    return ipcRenderer.sendSync(typeEvent);
+}
+
 contextBridge.exposeInMainWorld("PngtubeStudioAPI", {
     Events: {
         EventWindow
     },
     Get: {
-        Models
+        Models,
+        Settings
     }
 })

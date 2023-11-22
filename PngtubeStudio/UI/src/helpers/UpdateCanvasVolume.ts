@@ -1,36 +1,45 @@
-import { UpdateCanvasVolume } from "../types/helpers";
+// Types
+import { TypeUpdateCanvasVolume } from "../types/helpers";
 
 export default function UpdateCanvasVolume({
-    AudioState,
-    Volume,
-    Audio,
-    sensibility,
     canvasLevelRef,
-    amplifier
-}: UpdateCanvasVolume
+    AudioState,
+    ModifyState,
+    Volume
+}: TypeUpdateCanvasVolume
 ): void {
-    if (AudioState) {
-        if (Volume > amplifier.current) Audio.current = Math.floor(amplifier.current)
-        else Audio.current = Math.floor(Volume)
+
+    if (AudioState.State) {
+        if (Volume > AudioState.Amplifier) ModifyState({
+            action: 'Audio',
+            value: Math.floor(AudioState.Amplifier)
+        })
+        else ModifyState({
+            action: 'Audio',
+            value: Math.floor(Volume)
+        })
 
         const canvasLevel = canvasLevelRef.current;
         const ctxLevel = canvasLevel.getContext("2d")!;
 
-        if ((Volume / amplifier.current) * 100 < (sensibility.current / 100) * 100) {
+        if ((Volume / AudioState.Amplifier) * 100 < (AudioState.Sensibility / 100) * 100) {
             ctxLevel.fillStyle = "#41AF2E";
         }
-        if ((Volume / amplifier.current) * 100 > (sensibility.current / 100) * 100) {
+        if ((Volume / AudioState.Amplifier) * 100 > (AudioState.Sensibility / 100) * 100) {
             ctxLevel.fillStyle = "#FF0000";
         }
 
-        const rectWidth = (canvasLevel.width * Volume) / amplifier.current;
+        const rectWidth = (canvasLevel.width * Volume) / AudioState.Amplifier;
 
         ctxLevel.clearRect(0, 0, canvasLevel.width, canvasLevel.height);
         ctxLevel.fillRect(0, 0, rectWidth, canvasLevel.height);
 
     } else {
 
-        Audio.current = 0
+        ModifyState({
+            action: 'Audio',
+            value: 0
+        })
 
         const canvasLevel = canvasLevelRef.current;
         const ctxLevel = canvasLevel.getContext("2d");

@@ -1,23 +1,33 @@
 import { ReactNode } from "react"
-import { TypeBaseConfig, TypeModelsConfig } from "./WindowEvent"
+import { TypeAudioConfig, TypeBaseConfig, TypeModelsConfig } from "./WindowEvent"
 
 // Providers
 export interface Contextinterface {
     children: ReactNode
 }
-export interface TypeReducerSettings {
+export interface TypeSettingsReducerSettings {
     action: "Model" | "Resources" | "Wallpapers" | "Config",
     value: string | number | object | `#${string}`
 }
 
+export interface TypeAudioReducerSettings {
+    action: "Volume" | "Amplifier" | "Audio" | "Sensibility" | "State",
+    value: boolean | number
+}
+
 // Functions
-export type TypeModifyState = ({ action, value }: TypeReducerSettings) => void
+export type TypeModifySettingsState = ({ action, value }: TypeSettingsReducerSettings) => void
+export type TypeModifyAudioState = ({ action, value }: TypeAudioReducerSettings) => void
 
 // Contexts
 export interface SettingContextProps {
     SettingsState: TypeBaseConfig,
-    ModifyState: TypeModifyState
+    ModifyState: TypeModifySettingsState
 }
 export interface AvatarsContextProps {
     AvatarsState: TypeModelsConfig
+}
+export interface AudioContextProps {
+    AudioState: TypeAudioConfig,
+    ModifyState: TypeModifyAudioState
 }

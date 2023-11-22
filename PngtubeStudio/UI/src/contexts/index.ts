@@ -1,11 +1,13 @@
 // Modules
 import { createContext } from 'react';
-import { AvatarsContextProps, SettingContextProps } from '../types/contexts';
+import { AudioContextProps, AvatarsContextProps, SettingContextProps } from '../types/contexts';
 
 const SettingsContext = createContext<SettingContextProps>(null!)
 const AvatarsContext = createContext<AvatarsContextProps>(null!)
+const AudioContext_Def = createContext<AudioContextProps>(null!)
 
 export {
     SettingsContext,
-    AvatarsContext
+    AvatarsContext,
+    AudioContext_Def
 }

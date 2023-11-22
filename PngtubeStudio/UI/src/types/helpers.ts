@@ -1,9 +1,16 @@
+import { TypeAudioConfig } from "./WindowEvent"
+import { TypeModifyAudioState } from "./contexts"
+
 // Functions
-export type UpdateCanvasVolume = {
-    AudioState: boolean,
-    Volume: number,
-    sensibility: React.MutableRefObject<number>,
-    Audio: React.MutableRefObject<number>,
+export type TypeUpdateCanvasVolume = {
     canvasLevelRef: React.MutableRefObject<HTMLCanvasElement>,
-    amplifier: React.MutableRefObject<number>
+    AudioState: TypeAudioConfig,
+    ModifyState: TypeModifyAudioState,
+    Volume: number
+}
+
+export type TypeUpdateAvatarStyleClass = {
+    AudioState: TypeAudioConfig,
+    Animate: HTMLImageElement,
+    Volume: number
 }

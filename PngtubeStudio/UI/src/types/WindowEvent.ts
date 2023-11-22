@@ -33,6 +33,12 @@ export type TypeBaseConfig = {
         }
     }
 }
+export type TypeAudioConfig = {
+    State: boolean,
+    Amplifier: number,
+    Audio: number,
+    Sensibility: number
+}
 
 //Methods
 export type TypeEventWindow_Func = (typeEvent: TypeEventWindow) => void

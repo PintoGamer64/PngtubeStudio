@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:app": "npm start -w PngtubeStudio/App",
-    "build:ui": "npm run build -w PngtubeStudio/UI",
-    "test": "placeholder"
+    "start:app": "npm start -w PngtubeStudio/App && cls",
+    "build:ui": "npm run build -w PngtubeStudio/UI && cls",
+    "test": "npm run dev -w PngtubeStudio/UI && cls"
   },
   "workspaces": [
     "PngtubeStudio/*"

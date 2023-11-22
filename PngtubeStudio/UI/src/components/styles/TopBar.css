@@ -1,11 +1,10 @@
 #TopBar {
     display: flex;
     color: #000000;
-    max-height: 50px;
+    max-height: 30px;
     grid-area: topbar;
     align-items: center;
     box-sizing: border-box;
-    padding: 5px;
     z-index: 2;
     justify-content: space-between;
 }
@@ -16,7 +15,6 @@
     display: flex;
     height: 100%;
     overflow: hidden;
-    border-radius: 10px;
     align-items: center;
     justify-content: space-between;
 }

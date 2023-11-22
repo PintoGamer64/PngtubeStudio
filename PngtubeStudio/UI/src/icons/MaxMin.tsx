@@ -6,7 +6,7 @@ export default function MaxMin() {
                     <rect width="20" height="20" />
                 </clipPath>
             </defs>
-            <g clip-path="url(#_clipPath_fhoMsQVfqnFvcWWY6jRBkKUteochVvtY)">
+            <g clipPath="url(#_clipPath_fhoMsQVfqnFvcWWY6jRBkKUteochVvtY)">
                 <rect x="9.25" y="9.25" width="1.5" height="13.789" transform="matrix(0,-1,1,0,-6.144,26.144)" fill="rgb(0,0,0)" />
                 <rect x="9.25" y="-3.039" width="1.5" height="13.789" transform="matrix(0,-1,1,0,6.144,13.856)" fill="rgb(0,0,0)" />
                 <rect x="15.394" y="3.106" width="1.5" height="13.789" transform="matrix(-1,0,0,-1,32.289,20)" fill="rgb(0,0,0)" />

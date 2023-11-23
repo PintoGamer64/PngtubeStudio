@@ -29,18 +29,19 @@ export default function Main() {
             AudioState,
             Volume
         })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        return () => {};
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Volume])
 
     return (
         <>
-            <div id="ModelViewer" style={useImgURL(`${SettingsState.Wallpapers}\\${SettingsState.Config.Custom.wallpaper}.png`)}>
-                <img id="ActualModel" ref={Animate} src={ResolveRoute(AvatarsState[0].Image)} className={
-                    Animate ?
-                        ''
-                        :
-                        ''
-                } alt="ModelSpritesManager" width={200} height={200} />
+            <div id="ModelViewer" style={useImgURL(`${SettingsState.Wallpapers}\\${SettingsState.Config.Custom.wallpaper}.png`)} className={
+                !document.fullscreenElement ?
+                    'ModelViewerOutFull'
+                    :
+                    'ModelViewerInFull'
+            } >
+                <img id="ActualModel" ref={Animate} src={ResolveRoute(AvatarsState[0].Image)} alt="ModelSpritesManager" width={400} height={400} />
             </div>
             <main id="Main">
 

@@ -5,13 +5,20 @@ import './index.css'
 import SettingsProvider from './contexts/Settings/provider.tsx'
 import AvatarsProvider from './contexts/Avatars/provider.tsx'
 import AudioProvider from './contexts/Audio/provider.tsx'
+import MemoryProvider from './contexts/Memory/Provider.tsx'
+import Topbar from './components/TopBar.tsx'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('PngtubeStudio')!).render(
   <React.StrictMode>
     <SettingsProvider>
       <AvatarsProvider>
         <AudioProvider>
-          <App />
+          <MemoryProvider>
+            <Topbar />
+            <div id="root">
+              <App />
+            </div>
+          </MemoryProvider>
         </AudioProvider>
       </AvatarsProvider>
     </SettingsProvider>

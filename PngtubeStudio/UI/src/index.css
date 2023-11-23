@@ -20,9 +20,11 @@ body {
 }
 
 #root {
+  position: relative;
   display: grid;
+  width: 100%;
   grid-template:
-    "topbar topbar topbar"
     "main main main"
     "footer footer footer";
+  height: calc(100vh - 30px);
 }

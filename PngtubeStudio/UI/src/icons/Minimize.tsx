@@ -1,6 +1,6 @@
 export default function Minimize() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20pt" height="20pt">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="10pt" height="10pt">
             <defs>
                 <clipPath id="_clipPath_hP80jHfdaJVCZ7mg8McRNF5odvLJSDzW">
                     <rect width="20" height="20" />

@@ -6,7 +6,7 @@ import { get } from 'node:https';
 
 // Types
 import { TypeBaseConfig, TypeModelsConfig } from "./types";
-import { DownloadResourcesLink, pathsConfig } from "./constants";
+import { DownloadModels, DownloadResourcesLink, pathsConfig } from "./constants";
 
 export default function InitProcess() {
     const baseConfig: TypeBaseConfig = {
@@ -91,11 +91,38 @@ export default function InitProcess() {
             }
         })
     }
+    function CreateAvatars() {
+        DownloadModels.map(Download => {
+            const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars', Download.model, Download.file)
+            if (!existsSync(searchPath)) {
+                const archivoStream = createWriteStream(searchPath);
+
+                get(Download.url, (response) => {
+                    if (response.statusCode !== 200) return;
+
+                    response.pipe(archivoStream)
+
+                    archivoStream.on('finish', () => {
+                        console.log('Archivo descargado y copiado con éxito');
+                    });
+
+                    archivoStream.on('error', (err) => {
+                        unlink(searchPath, () => {
+                            console.error('Error al escribir el archivo:', err);
+                        });
+                    });
+                }).on('error', (err) => {
+                    console.error('Error al descargar el archivo:', err);
+                });
+            }
+        })
+    }
     function __Init__(): void {
         CreateConfigDirectories();
         CreateConfigBase();
         CreateConfigModels();
         CreateResources();
+        CreateAvatars();
     }
     return {
         __Init__

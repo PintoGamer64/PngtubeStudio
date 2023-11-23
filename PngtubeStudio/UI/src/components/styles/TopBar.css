@@ -1,11 +1,11 @@
 #TopBar {
     display: flex;
     color: #000000;
-    max-height: 30px;
-    grid-area: topbar;
+    max-height: 20px;
     align-items: center;
     box-sizing: border-box;
     z-index: 2;
+    position: relative;
     justify-content: space-between;
 }
 
@@ -21,19 +21,19 @@
 
 .TopBar-Title,
 .TopBar-Title * {
-    font-size: large;
+    font-size: smaller;
     -webkit-app-region: drag;
 }
 
 .TopBar-Title {
     padding: 0 0 0 10px;
-    width: calc(100% - 120px);
+    width: 100%;
     max-width: calc(100% - 120px);
 }
 
 .TopBar-Buttons {
     display: flex;
-    width: 120px;
+    width: auto;
     max-width: 120px;
 }
 
@@ -41,7 +41,7 @@
     border: none;
     display: grid;
     width: 40px;
-    height: 30px;
+    height: 20px;
     place-items: center;
     padding: 0 5px;
     background: transparent;

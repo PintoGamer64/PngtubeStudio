@@ -5,14 +5,21 @@ export const pathsConfig = [
     join(homedir(), 'AppData\\Roaming\\PNGtubeSettings'),
     join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars'),
     join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Resources'),
-    join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Wallpapers')
+    join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Wallpapers'),
+    join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami')
 ]
 
 export const DownloadModels = [
-    "",
-    "",
-    "",
-    "",
+    {
+        file: "Ookami.png",
+        model: "Ookami",
+        url: "https://raw.githubusercontent.com/PintoGamer64/PngtubeStudio/main/Assets/Ookami/Ookami.png"
+    },
+    {
+        file: "Ookami2.png",
+        model: "Ookami",
+        url: "https://raw.githubusercontent.com/PintoGamer64/PngtubeStudio/main/Assets/Ookami/Ookami2.png"
+    }
 ]
 
 export const DownloadResourcesLink = [

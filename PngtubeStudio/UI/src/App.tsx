@@ -1,13 +1,14 @@
 // Components
 import FooBar from './components/FooBar'
 import Main from './components/Main'
-import Topbar from './components/TopBar'
+import useEventFullScreen from './events/Fullscreen'
 
 function App() {
 
+  useEventFullScreen()
+
   return (
     <>
-      <Topbar />
       <Main />
       <FooBar />
     </>

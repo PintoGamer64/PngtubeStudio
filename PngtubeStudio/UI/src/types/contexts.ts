@@ -14,10 +14,19 @@ export interface TypeAudioReducerSettings {
     action: "Volume" | "Amplifier" | "Audio" | "Sensibility" | "State",
     value: boolean | number
 }
+export interface typeMemoryReducerSettings {
+    action: "Fullscreen",
+    value: boolean
+}
+
+export type DefaultValuesMemory = {
+    Fullscreen: boolean
+}
 
 // Functions
 export type TypeModifySettingsState = ({ action, value }: TypeSettingsReducerSettings) => void
 export type TypeModifyAudioState = ({ action, value }: TypeAudioReducerSettings) => void
+export type TypeModifyMemoryState = ({ action, value }: typeMemoryReducerSettings) => void
 
 // Contexts
 export interface SettingContextProps {
@@ -30,4 +39,9 @@ export interface AvatarsContextProps {
 export interface AudioContextProps {
     AudioState: TypeAudioConfig,
     ModifyState: TypeModifyAudioState
+}
+
+export interface MemoryContextProps {
+    MemoryState: DefaultValuesMemory,
+    ModifyState: TypeModifyMemoryState
 }

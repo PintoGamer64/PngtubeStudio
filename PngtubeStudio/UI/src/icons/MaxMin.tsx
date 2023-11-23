@@ -1,6 +1,6 @@
 export default function MaxMin() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20pt" height="20pt">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="10pt" height="10pt">
             <defs>
                 <clipPath id="_clipPath_fhoMsQVfqnFvcWWY6jRBkKUteochVvtY">
                     <rect width="20" height="20" />

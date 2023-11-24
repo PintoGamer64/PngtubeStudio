@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
 h1,
@@ -26,5 +26,5 @@ body {
   grid-template:
     "main main main"
     "footer footer footer";
-  height: calc(100vh - 30px);
+  /* height: calc(100vh - 30px); */
 }

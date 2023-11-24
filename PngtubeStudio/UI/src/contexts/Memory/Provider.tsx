@@ -7,7 +7,10 @@ import { Contextinterface, DefaultValuesMemory, typeMemoryReducerSettings } from
 export default function MemoryProvider({ children }: Contextinterface) {
 
     const DefaultValues: DefaultValuesMemory = {
-        Fullscreen: false
+        Fullscreen: false,
+        Settings: false,
+        SettingRouter: 'Appareance',
+        PictureInPicture: false
     }
 
     function reducer(state: DefaultValuesMemory, { action, value }: typeMemoryReducerSettings) {

@@ -1,0 +1,89 @@
+#Settings {
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    position: absolute;
+    place-items: center;
+    top: 0;
+    left: 0;
+    background: #00000050;
+}
+
+#SettingsMain {
+    width: 80%;
+    height: 75%;
+    max-width: 1024px;
+    max-height: 768px;
+    border-radius: 5px;
+    display: grid;
+    background-color: #ffffff;
+    grid-template:
+        "navigator viewer viewer"
+        "navigator viewer viewer"
+        "navigator viewer viewer";
+}
+
+#SettingsList {
+    display: grid;
+    grid-area: navigator;
+    place-items: center;
+}
+
+#SettingsList-Content {
+    width: calc(100% - 16px);
+    border-radius: 2.5px;
+    background: #00000010;
+    height: calc(100% - 16px);
+}
+
+#SettingsView {
+    grid-area: viewer;
+    padding: 0 8px 8px 0;
+    display: grid;
+    grid-template:
+        "tool" 40px
+        "content";
+}
+
+#SettingsView-Tool {
+    display: flex;
+    grid-area: tool;
+    padding: 0 2px 0 2px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid #00000030;
+}
+
+#SettingsView-Tool-Title {
+    font-size: large;
+}
+
+#SettingsView-Tool-CloseButton {
+    border: none;
+    width: 40px;
+    box-sizing: border-box;
+    background: #00000020;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    border-radius: 2.5px;
+    outline: 2px solid #00000020;
+    transition: all .1s ease;
+}
+
+#SettingsView-Tool-CloseButton:hover {
+    background: none;
+    outline: 2px solid #00000020;
+}
+
+#SettingsView-Content {
+    grid-area: content;
+}
+
+.SettingsOpen {
+    display: grid;
+}
+
+.SettingClose {
+    display: none;
+}

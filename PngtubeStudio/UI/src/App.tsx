@@ -1,16 +1,18 @@
 // Components
 import FooBar from './components/FooBar'
 import Main from './components/Main'
-import useEventFullScreen from './events/Fullscreen'
+import Settings from './components/Settings'
+import useEventsDefinitios from './events'
 
 function App() {
 
-  useEventFullScreen()
+  useEventsDefinitios().__init__();
 
   return (
     <>
       <Main />
       <FooBar />
+      <Settings />
     </>
   )
 }

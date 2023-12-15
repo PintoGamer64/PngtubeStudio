@@ -2,6 +2,11 @@
   font-family: system-ui, sans-serif;
 }
 
+#PngtubeStudio {
+  overflow: hidden;
+}
+
+p,
 h1,
 h2,
 h3,
@@ -17,6 +22,7 @@ body,
 body {
   width: 100vw;
   height: 100vh;
+  zoom: 100%;
 }
 
 #root {

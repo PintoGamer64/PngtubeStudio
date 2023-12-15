@@ -1,3 +1,5 @@
+import { WriteStream } from "fs";
+
 export type TypeEventWindow = 'minimize' | 'close' | 'restore';
 export type TypeEventModels = 'getModels' | 'sendModels';
 export type TypeEventSettings = 'getSettings' | 'sendSettings';
@@ -30,4 +32,10 @@ export type TypeBaseConfig = {
             brightness: number
         }
     }
+}
+
+export interface IntDownloadFiles {
+    DownloadUrl: string,
+    FileStream: WriteStream,
+    FileLocation: string
 }

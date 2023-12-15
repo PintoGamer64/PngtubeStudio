@@ -5,13 +5,13 @@ import { useContext } from 'react';
 import { SettingsContext } from "../contexts";
 
 // Utils
-import { ResolveRoute } from "../utils";
+import { ResolveRouteRight } from "../utils";
 
-export default function useImgURL(Route: string) {
+export default function ImgURL(Route: string) {
 
     const { SettingsState } = useContext(SettingsContext);
 
-    const responceURLWallpaper = ResolveRoute(Route);
+    const responceURLWallpaper = ResolveRouteRight(Route);
     
     let responceStyle;
     if (SettingsState.Config.Custom.type === 'Color') {

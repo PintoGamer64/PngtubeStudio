@@ -16,7 +16,7 @@ export interface TypeAudioReducerSettings {
 }
 export interface typeMemoryReducerSettings {
     action: "Fullscreen" | "Settings" | "SettingRouter" | "PictureInPicture",
-    value: boolean
+    value: boolean | string
 }
 
 export type DefaultValuesMemory = {

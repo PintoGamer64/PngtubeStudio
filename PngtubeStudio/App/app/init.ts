@@ -7,6 +7,7 @@ import { get } from 'node:https';
 // Types
 import { TypeBaseConfig, TypeModelsConfig } from "./types";
 import { DownloadModels, DownloadResourcesLink, pathsConfig } from "./constants";
+import { DownloadFiles } from "./utils";
 
 export default function InitProcess() {
     const baseConfig: TypeBaseConfig = {
@@ -70,24 +71,11 @@ export default function InitProcess() {
             const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Resources', Download.file)
             if (!existsSync(searchPath)) {
                 const archivoStream = createWriteStream(searchPath);
-
-                get(Download.url, (response) => {
-                    if (response.statusCode !== 200) return;
-
-                    response.pipe(archivoStream)
-
-                    archivoStream.on('finish', () => {
-                        console.log('Archivo descargado y copiado con éxito');
-                    });
-
-                    archivoStream.on('error', (err) => {
-                        unlink(searchPath, () => {
-                            console.error('Error al escribir el archivo:', err);
-                        });
-                    });
-                }).on('error', (err) => {
-                    console.error('Error al descargar el archivo:', err);
-                });
+                DownloadFiles({
+                    DownloadUrl: Download.url,
+                    FileLocation: searchPath,
+                    FileStream: archivoStream
+                })
             }
         })
     }
@@ -97,23 +85,11 @@ export default function InitProcess() {
             if (!existsSync(searchPath)) {
                 const archivoStream = createWriteStream(searchPath);
 
-                get(Download.url, (response) => {
-                    if (response.statusCode !== 200) return;
-
-                    response.pipe(archivoStream)
-
-                    archivoStream.on('finish', () => {
-                        console.log('Archivo descargado y copiado con éxito');
-                    });
-
-                    archivoStream.on('error', (err) => {
-                        unlink(searchPath, () => {
-                            console.error('Error al escribir el archivo:', err);
-                        });
-                    });
-                }).on('error', (err) => {
-                    console.error('Error al descargar el archivo:', err);
-                });
+                DownloadFiles({
+                    DownloadUrl: Download.url,
+                    FileLocation: searchPath,
+                    FileStream: archivoStream
+                })
             }
         })
     }

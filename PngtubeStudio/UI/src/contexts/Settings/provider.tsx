@@ -19,8 +19,6 @@ export default function SettingsProvider({ children }: Contextinterface) {
         Config
     }
 
-    console.log(DefaultValues);
-
     function reducer(state: TypeBaseConfig, { action, value }: TypeSettingsReducerSettings) {
         return {
             ...state,

@@ -1,6 +1,7 @@
 module.exports = {
   packagerConfig: {
     asar: true,
+    dir: 'C:/Users/JoanCardozo/Documents/New_PngtubeStudio/PngtubeStudio/App/dist'
   },
   rebuildConfig: {},
   makers: [
@@ -21,10 +22,10 @@ module.exports = {
       config: {},
     },
   ],
-  plugins: [
+  /* plugins: [
     {
       name: '@electron-forge/plugin-auto-unpack-natives',
       config: {},
     },
-  ],
+  ], */
 };

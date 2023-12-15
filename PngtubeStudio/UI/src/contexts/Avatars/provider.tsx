@@ -10,8 +10,6 @@ export default function AvatarsProvider({ children }: Contextinterface) {
 
     const Models: TypeModelsConfig = Get.Models("getModels");
 
-    console.log(Models);
-
     return (
         <AvatarsContext.Provider value={{
             AvatarsState: Models

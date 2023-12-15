@@ -1,5 +1,4 @@
 import { app, BrowserWindow, ipcMain, webFrame } from "electron";
-import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
 import { join } from "path";
 import PngtubeStudioAPI from "./api/PngtubeAPI";
 import InitProcess from "./init";
@@ -28,10 +27,6 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-
-  installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name) => console.log(`Added Extension:  ${name}`))
-        .catch((err) => console.log('An error occurred: ', err));
 
   // Create Window
   createWindow();

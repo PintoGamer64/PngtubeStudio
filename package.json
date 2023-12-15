@@ -5,6 +5,7 @@
   "scripts": {
     "start:app": "npm start -w PngtubeStudio/App && cls",
     "build:ui": "npm run build -w PngtubeStudio/UI && cls",
+    "build": "npm run make -w PngtubeStudio/App",
     "test": "npm run dev -w PngtubeStudio/UI && cls"
   },
   "workspaces": [

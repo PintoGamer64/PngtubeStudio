@@ -6,17 +6,16 @@
     place-items: center;
     top: 0;
     left: 0;
-    background: #00000050;
+    background: #ffffff;
 }
 
 #SettingsMain {
     width: 80%;
-    height: 75%;
-    max-width: 1024px;
-    max-height: 768px;
+    height: 100%;
+    max-width: 800px;
     border-radius: 5px;
     display: grid;
-    background-color: #ffffff;
+    background-color: #fff;
     grid-template:
         "navigator viewer viewer"
         "navigator viewer viewer"
@@ -32,58 +31,233 @@
 #SettingsList-Content {
     width: calc(100% - 16px);
     border-radius: 2.5px;
-    background: #00000010;
+    background: #00000030;
     height: calc(100% - 16px);
+    display: grid;
+    grid-template:
+        "image" 120px
+        "content";
+}
+
+#SettingsList-Content-Image {
+    grid-area: image;
+    display: grid;
+    place-items: center;
+    border-bottom: 4px solid #ffffff;
+}
+
+#SettingsList-Content-Image-Element {
+    width: 120px;
+}
+
+#SettingsList-Content-Scroll {
+    grid-area: content;
 }
 
 #SettingsView {
     grid-area: viewer;
-    padding: 0 8px 8px 0;
+    padding: 0 28px 8px 20px;
     display: grid;
     grid-template:
-        "tool" 40px
+        "tool" 80px
         "content";
 }
 
 #SettingsView-Tool {
+    margin: 8px 0;
     display: flex;
     grid-area: tool;
-    padding: 0 2px 0 2px;
+    padding: 0 2px;
     align-items: center;
     justify-content: space-between;
     border-bottom: 3px solid #00000030;
 }
 
 #SettingsView-Tool-Title {
+    width: 300px;
     font-size: large;
 }
 
 #SettingsView-Tool-CloseButton {
     border: none;
-    width: 40px;
+    width: 30px;
+    height: 30px;
     box-sizing: border-box;
-    background: #00000020;
-    height: 20px;
+    background: #00000030;
     display: grid;
     place-items: center;
-    border-radius: 2.5px;
-    outline: 2px solid #00000020;
+    border-radius: 15px;
+    outline: 2px solid #00000030;
     transition: all .1s ease;
+    cursor: pointer;
 }
 
 #SettingsView-Tool-CloseButton:hover {
     background: none;
-    outline: 2px solid #00000020;
 }
 
 #SettingsView-Content {
+    width: 100%;
+    box-sizing: border-box;
     grid-area: content;
+    height: 100%;
+    padding: 10px 0 0 0;
+}
+
+#SettingsList-Content-Scroll-Capsule {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+}
+
+.SettingsList-Content-Scroll-Element {
+    position: relative;
+    list-style: none;
+    border-radius: 2.5px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 31px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+}
+
+.SettingsList-Content-Scroll-Element:hover {
+    background: #b9b9b9;
+}
+
+.SettingsList-Content-Scroll-Element:hover:before {
+    position: absolute;
+    content: "";
+    right: -18px;
+    width: 20px;
+    height: 31px;
+    background: #b9b9b9;
+}
+
+.SettingsList-Content-Scroll-Element:nth-child(even) {
+    margin: 5px 0;
+}
+
+.SettingsRouter-Selected:before {
+    position: absolute;
+    content: "";
+    right: -18px;
+    width: 20px;
+    height: 31px;
+    background: #ffffff;
+}
+
+.SettingsRouter-Selected:hover:before {
+    position: absolute;
+    content: "";
+    right: -20px;
+    width: 20px;
+    height: 31px;
+    background: #ffffff;
+}
+
+.SettingsRouter-Selected {
+    background: #ffffff;
+}
+
+.SettingsRouter-Selected:hover {
+    background: #ffffff
 }
 
 .SettingsOpen {
     display: grid;
+    animation: OpenSettings .15s ease;
 }
 
 .SettingClose {
     display: none;
+}
+
+@keyframes OpenSettings {
+    from {
+        transform: scale(150%);
+        opacity: 0;
+    }
+    to {
+        transform: scale(100%);
+        opacity: 1;
+    }
+}
+
+/* Settings Elements */
+
+.OptionsElement {
+    width: 100%;
+    display: grid;
+    grid-template: "definition definition option";
+}
+
+.OptionsElement:nth-child(even) {
+    margin: 10px 0;
+}
+
+.OptionsElement-Data {
+    display: flex;
+    grid-area: definition;
+    font-size: x-small;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.OptionsElement-Execution {
+    display: flex;
+    grid-area: option;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.OptionsElement-Execution-Input {
+    position: relative;
+    background: #00000030;
+    appearance: none;
+    display: flex;
+    width: 35px;
+    height: 12.5px;
+    border-radius: 7.5px;
+    transition: all .2s ease;
+    align-items: center
+}
+
+.OptionsElement-Execution-Input:after {
+    transition: all .2s ease;
+    position: absolute;
+    content: "";
+    width: 17.5px;
+    border-radius: 7.5px;
+    height: 17.5px;
+}
+
+.OptionsElement-Execution-InputColor {
+    appearance: none;
+    width: 100px;
+    border-radius: 7.5px;
+    border: none;
+    background: #00000030;
+    cursor: pointer;
+}
+
+.Execution-Off:after {
+    left: 0;
+    transition: all .2s ease;
+    outline: 1px solid #000000;
+    background: #000000;
+}
+
+.Execution-Allow:after {
+    right: 0;
+    transition: all .2s ease;
+    outline: 1px solid #00ff00;
+    background: #00ff00;
 }

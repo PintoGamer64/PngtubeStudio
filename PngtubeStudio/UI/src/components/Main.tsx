@@ -8,6 +8,7 @@ import { MemoryContext, SettingsContext } from '../contexts'
 import './styles/Main.css'
 import ImgURL from '../hooks/BackgroundStyle';
 import ModelViewer from './components/modelViewer';
+import AvatarsShowcase from './components/AvatarShowcase';
 
 export default function Main() {
 
@@ -30,7 +31,7 @@ export default function Main() {
                 <ModelViewer />
             </div>
             <main id="Main">
-
+                <AvatarsShowcase />
             </main>
         </>
     )

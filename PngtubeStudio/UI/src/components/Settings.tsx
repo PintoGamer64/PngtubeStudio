@@ -10,15 +10,22 @@ import './styles/Settings.css'
 
 export default function Settings() {
 
-    const { MemoryState } = useContext(MemoryContext)
+    const { MemoryState, ModifyState } = useContext(MemoryContext)
 
     return (
         <div id="Settings" className={
             MemoryState.Settings
                 ? "SettingsOpen"
                 : "SettingClose"
+        }
+            onClick={() => {
+                ModifyState({
+                    action: "Settings",
+                    value: false
+                })
+            }
         }>
-            <main id="SettingsMain">
+            <main id="SettingsMain" onClick={(ev) => ev.stopPropagation()}>
                 <ListSettings />
                 <ViewSettings />
             </main>

@@ -15,15 +15,16 @@ export interface TypeAudioReducerSettings {
     value: boolean | number
 }
 export interface typeMemoryReducerSettings {
-    action: "Fullscreen" | "Settings" | "SettingRouter" | "PictureInPicture",
+    action: "Fullscreen" | "Settings" | "SettingRouter" | "PictureInPicture" | "AvatarsShowcase",
     value: boolean | string
 }
 
 export type DefaultValuesMemory = {
     Fullscreen: boolean,
     Settings: boolean,
-    SettingRouter: "Appareance" | "Advanced",
-    PictureInPicture: boolean
+    SettingRouter: "Appareance" | "Advanced" | "Voice",
+    PictureInPicture: boolean,
+    AvatarsShowcase: boolean
 }
 
 // Functions

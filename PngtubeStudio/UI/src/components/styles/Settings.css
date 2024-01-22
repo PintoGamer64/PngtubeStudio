@@ -6,20 +6,17 @@
     place-items: center;
     top: 0;
     left: 0;
-    background: #ffffff;
+    background: #00000050;
 }
 
 #SettingsMain {
     width: 80%;
     height: 100%;
     max-width: 800px;
-    border-radius: 5px;
+    border-radius: 0 10px 10px 0;
     display: grid;
     background-color: #fff;
-    grid-template:
-        "navigator viewer viewer"
-        "navigator viewer viewer"
-        "navigator viewer viewer";
+    grid-template: "navigator viewer viewer" "navigator viewer viewer" "navigator viewer viewer"
 }
 
 #SettingsList {
@@ -172,7 +169,10 @@
 }
 
 .SettingsOpen {
-    display: grid;
+    display: flex;
+}
+
+#SettingsMain {
     animation: OpenSettings .15s ease;
 }
 
@@ -182,11 +182,12 @@
 
 @keyframes OpenSettings {
     from {
-        transform: scale(150%);
+        transform: translateX(-100%);
         opacity: 0;
     }
+
     to {
-        transform: scale(100%);
+        transform: translateX(0);
         opacity: 1;
     }
 }
@@ -200,7 +201,7 @@
 }
 
 .OptionsElement:nth-child(even) {
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .OptionsElement-Data {

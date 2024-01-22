@@ -10,7 +10,8 @@ export default function MemoryProvider({ children }: Contextinterface) {
         Fullscreen: false,
         Settings: false,
         SettingRouter: 'Appareance',
-        PictureInPicture: false
+        PictureInPicture: false,
+        AvatarsShowcase: false
     }
 
     function reducer(state: DefaultValuesMemory, { action, value }: typeMemoryReducerSettings) {

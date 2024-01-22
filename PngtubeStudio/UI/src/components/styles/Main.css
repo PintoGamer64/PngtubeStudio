@@ -1,8 +1,10 @@
 #Main {
-    z-index: 0;
+    position: relative;
     width: 100%;
+    display: flex;
     height: calc(100vh - 80px);
     grid-area: main;
+    align-items: center;
 }
 
 #ModelViewer {
@@ -18,12 +20,65 @@
 .ModelViewerOutFull {
     height: calc(100vh - 20px);
 }
+
 .ModelViewerInFull {
     height: 100%
 }
 
 .AvatarActive {
     animation: 0.5s ease 0s infinite shake;
+}
+
+#AvatarShowcase {
+    margin: 0 10px 0 0;
+    position: absolute;
+    z-index: 1;
+    width: 100px;
+    height: 80%;
+    transition: all .15s ease;
+}
+
+.AvatarShowcase-Active {
+    right: 0;
+    transition: all .15s ease;
+}
+
+.AvatarShowcase-Desactive {
+    right: -110px;
+    transition: all .15s ease;
+}
+
+#AvatarShowcase-List {
+    flex-direction: column;
+    list-style: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AvatarShowcase-List-Elements {
+    cursor: pointer;
+    display: flex;
+    width: 75px;
+    height: 75px;
+    padding: 5px;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 2.5px;
+    justify-content: center;
+}
+
+.AvatarShowcase-List-Elements:nth-child(even) {
+    margin: 10px 0;
+}
+
+.AvatarShowcase-List-AvatarName {
+    font-weight: bold;
 }
 
 /* Keyframes */

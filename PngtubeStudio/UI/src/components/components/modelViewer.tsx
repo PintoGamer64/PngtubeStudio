@@ -24,7 +24,7 @@ export default function ModelViewer() {
     }, [Volume])
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const ActualModelStyle = useMemo(() => ResolveRouteLeft(AvatarsState[0].Image), [SettingsState.Model])
+    const ActualModelStyle = useMemo(() => ResolveRouteLeft(AvatarsState.Data[AvatarsState.Select - 1].Image), [SettingsState.Model])
 
     return <img id="ActualModel" ref={Animate} src={ActualModelStyle} alt="ModelSpritesManager" width={400} height={400} />
 }

@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { UpdateVolume } from '../helpers/UpdateVolume';
+import { AudioContext_Def } from '../contexts';
 
 export default function useMicrophone() {
+
+    const { AudioState } = useContext(AudioContext_Def);
 
     const [Volume, setVolume] = useState(0);
 
@@ -14,7 +17,7 @@ export default function useMicrophone() {
                 const source = audioContext.createMediaStreamSource(stream);
                 const analyser = audioContext.createAnalyser();
                 source.connect(analyser);
-                analyser.fftSize = 32;
+                analyser.fftSize = AudioState.FftSize;
                 const bufferLength = analyser.frequencyBinCount;
                 const dataArray = new Uint8Array(bufferLength);
 
@@ -22,13 +25,13 @@ export default function useMicrophone() {
                     setVolume(value)
                 })
 
-                intervalTime = setInterval(execution, 33);
+                intervalTime = setInterval(execution, 8);
             })
             .catch((error) => {
                 console.error("Error al obtener acceso al micrófono:", error);
             });
         return () => clearInterval(intervalTime);
-    }, []);
+    }, [AudioState.FftSize]);
 
     return {
         Volume

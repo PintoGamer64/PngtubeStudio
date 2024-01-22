@@ -187,15 +187,26 @@
 }
 
 /* Lateral Left */
+#FooBar-LateralLeft {
+    flex-direction: row;
+}
+
+#FooBar-LateralRight {
+    flex-direction: row-reverse;
+}
+
 #FooBar-LateralLeft,
 #FooBar-LateralRight {
+    padding: 0 30px;
     width: calc(50vw - 200px);
     min-width: calc(50vw - 200px);
     max-width: calc(50vw - 200px);
     height: 40px;
+    box-sizing: border-box;
     display: flex;
 }
 
+.FooBar-LateralRight-Button,
 .FooBar-LateralLeft-Button {
     border-radius: 2.5px;
     border: none;
@@ -207,10 +218,12 @@
     place-items: center
 }
 
+.FooBar-LateralRight-Button:nth-child(even),
 .FooBar-LateralLeft-Button:nth-child(even) {
     margin: 0 10px;
 }
 
+.FooBar-LateralRight-Button:hover:before,
 .FooBar-LateralLeft-Button:hover:before {
     content: '';
     position: absolute;

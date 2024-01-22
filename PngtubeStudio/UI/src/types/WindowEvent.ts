@@ -4,8 +4,8 @@ export type TypeEventModels = 'getModels' | 'sendModels';
 export type TypeEventSettings = 'getSettings' | 'sendSettings';
 
 // Definitions
-export type TypeModelsConfig = {
-    Id: string | number,
+export type TypeModelConfigBase = {
+    Id: number,
     Name: string,
     Owner: string,
     Date: string,
@@ -17,6 +17,12 @@ export type TypeModelsConfig = {
     },
     URL: string
 }[]
+
+export type TypeModelsConfig = {
+    Data: TypeModelConfigBase,
+    Select: number,
+    
+}
 export type TypeBaseConfig = {
     Resources: string,
     Wallpapers: string,
@@ -37,10 +43,11 @@ export type TypeAudioConfig = {
     State: boolean,
     Amplifier: number,
     Audio: number,
-    Sensibility: number
+    Sensibility: number,
+    FftSize: 32 | 64 | 128 | 256 | 512 | 1024 | 2048 | 4096
 }
 
 //Methods
 export type TypeEventWindow_Func = (typeEvent: TypeEventWindow) => void
-export type TypeEventModels_Func = (typeEvent: TypeEventModels) => TypeModelsConfig
+export type TypeEventModels_Func = (typeEvent: TypeEventModels) => TypeModelConfigBase
 export type TypeEventSettings_Func = (typeEvent: TypeEventSettings) => TypeBaseConfig

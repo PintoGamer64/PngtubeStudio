@@ -8,7 +8,11 @@ export default function AvatarsProvider({ children }: Contextinterface) {
 
     const { Get } = usePngtubeStudioAPI();
 
-    const Models: TypeModelsConfig = Get.Models("getModels");
+    const Models: TypeModelsConfig = {
+        Data: Get.Models("getModels"),
+        Select: 1
+    }
+
 
     return (
         <AvatarsContext.Provider value={{

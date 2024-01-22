@@ -43,9 +43,9 @@ export default function Microphone() {
                 <div id="FooBar-Microphone-Amplifier">
                     <input type="range" id="FooBar-Microphone-Amplifier-Slider" value={AudioState.Amplifier} min={0} max={200}
                         onChange={(event) => {
-                            if (parseInt(event.target.value) < 50) ModifyState({
+                            if (parseInt(event.target.value) < 15) ModifyState({
                                 action: 'Amplifier',
-                                value: 50
+                                value: 15
                             });
                             else ModifyState({
                                 action: 'Amplifier',
@@ -72,9 +72,9 @@ export default function Microphone() {
                     <canvas id="FooBar-Microphone-Visualizer-Level" ref={canvasLevelRef} width={200} height={20} />
                     <input type="range" id="FooBar-Microphone-Visualizer-Slider" value={AudioState.Sensibility} min={0} max={100}
                         onChange={(event) => {
-                            if (parseInt(event.target.value) < 15) ModifyState({
+                            if (parseInt(event.target.value) < 5) ModifyState({
                                 action: 'Sensibility',
-                                value: 15
+                                value: 5
                             });
                             else ModifyState({
                                 action: 'Sensibility',

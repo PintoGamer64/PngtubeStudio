@@ -11,7 +11,8 @@ export default function AudioProvider({ children }: Contextinterface) {
         Amplifier: 100,
         Audio: 0,
         Sensibility: 50,
-        State: true
+        State: true,
+        FftSize: 4096
     }
 
     function reducer(state: TypeAudioConfig, { action, value }: TypeAudioReducerSettings) {

@@ -1,5 +1,6 @@
 //Components
 import LateralLeft from "./controllers/LateralLeft";
+import LateralRight from "./controllers/LateralRight";
 import Microphone from "./controllers/Microphone";
 //Styles
 import "./styles/FooBar.css"
@@ -10,9 +11,7 @@ export default function FooBar() {
         <footer id="FooBar">
             <LateralLeft />
             <Microphone />
-            <div id="FooBar-LateralRight">
-
-            </div>
+            <LateralRight />
         </footer>
     )
 }

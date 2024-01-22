@@ -82,7 +82,7 @@ export default function Contants() {
 
     const SettingsListDetails: PropagtorStructureList = [
         {
-            Id: 1,
+            Id: 0,
             Text: "Appareance",
             ChangeCondition: MemoryState.SettingRouter === "Appareance",
             Execution: () => ModifyMemory({
@@ -92,6 +92,15 @@ export default function Contants() {
         },
         {
             Id: 1,
+            Text: "Voice",
+            ChangeCondition: MemoryState.SettingRouter === "Voice",
+            Execution: () => ModifyMemory({
+                action: 'SettingRouter',
+                value: "Voice"
+            })
+        },
+        {
+            Id: 2,
             Text: "Advanced",
             ChangeCondition: MemoryState.SettingRouter === "Advanced",
             Execution: () => ModifyMemory({

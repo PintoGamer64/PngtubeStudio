@@ -8,8 +8,6 @@ import { TypeBaseConfig } from "./types";
 
 let mainWindow: BrowserWindow;
 
-InitProcess().__Init__();
-
 (async () => {
   const HardAcc: TypeBaseConfig = await readJSON(join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings.json'))
 
@@ -37,7 +35,9 @@ function createWindow() {
   /* mainWindow.webContents.openDevTools(); */
 }
 
-app.whenReady().then(() => {
+app.whenReady().then( async () => {
+
+  await InitProcess().__Init__();
 
   // Create Window
   createWindow();

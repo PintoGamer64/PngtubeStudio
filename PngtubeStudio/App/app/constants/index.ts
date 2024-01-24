@@ -26,6 +26,10 @@ export const DownloadResourcesLink = [
     {
         file: "PNGtube_Logo_Github.png",
         url: "https://raw.githubusercontent.com/PintoGamer64/PngtubeStudio/main/Assets/PNGtube_Logo_Github.png"
+    },
+    {
+        file: "Logo.png",
+        url: "https://raw.githubusercontent.com/PintoGamer64/PngtubeStudio/main/Assets/Logo.png"
     }
 ]
 

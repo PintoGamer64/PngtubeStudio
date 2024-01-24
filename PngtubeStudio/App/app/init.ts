@@ -107,7 +107,7 @@ export default function InitProcess() {
             }
         })
     }
-    function __Init__(): void {
+    async function __Init__(): Promise<void> {
         CreateConfigDirectories();
         CreateConfigBase();
         CreateConfigModels();

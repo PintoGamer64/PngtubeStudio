@@ -8,7 +8,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
-    "start": "npm run build && electron ./dist/main.js",
+    "start": "npm run build && electron --trace-warnings ./dist/main.js",
     "make": "tsc && npx electron-forge make"
   },
   "keywords": [],

@@ -30,21 +30,23 @@ export default function PngtubeStudioAPI() {
       }]
     })
 
-    const ModelLoaded: TypeModelsConfigIndividual = await readJSON(
-      SelectedFile[0]
-    ).catch(() => console.log("Error al leer el archivo"))
-
-    const AvatarsFile = await readJSON(
-      join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json')
-    ).catch(() => console.log("Error al leer el archivo"))
-
-    AvatarsFile.push(ModelLoaded)
-
-    writeFileSync(
-      join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json'),
-      JSON.stringify(AvatarsFile, null, 4),
-      { encoding: 'utf-8' }
-    )
+    if (SelectedFile.length > 0) {
+      const ModelLoaded: TypeModelsConfigIndividual = await readJSON(
+        SelectedFile[0]
+      ).catch(() => console.log("Error al leer el archivo"))
+  
+      const AvatarsFile = await readJSON(
+        join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json')
+      ).catch(() => console.log("Error al leer el archivo"))
+  
+      AvatarsFile.push(ModelLoaded)
+  
+      writeFileSync(
+        join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json'),
+        JSON.stringify(AvatarsFile, null, 4),
+        { encoding: 'utf-8' }
+      )
+    }
   })
   //---------------------------------------------------------//
   ipcMain.on('sendSettings', (ev, value) => {

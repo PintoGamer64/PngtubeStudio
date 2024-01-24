@@ -8,10 +8,12 @@ export default function useWindowEvents() {
     const MinimizeEvent = () => Events.EventWindow('minimize')
     const MaxMinEvent = () => Events.EventWindow('restore')
     const CloseEvent = () => Events.EventWindow('close')
+    const LoadFile = () => Events.EventWindow('getFile')
 
     return {
         MinimizeEvent,
         MaxMinEvent,
-        CloseEvent
+        CloseEvent,
+        LoadFile
     }
 }

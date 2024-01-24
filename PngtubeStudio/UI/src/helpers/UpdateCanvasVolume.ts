@@ -10,14 +10,8 @@ export default function UpdateCanvasVolume({
 ): void {
 
     if (AudioState.State) {
-        if (Volume > AudioState.Amplifier) ModifyState({
-            action: 'Audio',
-            value: Math.floor(AudioState.Amplifier)
-        })
-        else ModifyState({
-            action: 'Audio',
-            value: Math.floor(Volume)
-        })
+        if (Volume > AudioState.Amplifier) ModifyState(Math.floor(AudioState.Amplifier))
+        else ModifyState(Math.floor(Volume))
 
         const canvasLevel = canvasLevelRef.current;
         const ctxLevel = canvasLevel.getContext("2d")!;
@@ -36,10 +30,7 @@ export default function UpdateCanvasVolume({
 
     } else {
 
-        ModifyState({
-            action: 'Audio',
-            value: 0
-        })
+        ModifyState(0)
 
         const canvasLevel = canvasLevelRef.current;
         const ctxLevel = canvasLevel.getContext("2d");

@@ -1,11 +1,11 @@
+import { Dispatch, SetStateAction } from "react"
 import { TypeAudioConfig } from "./WindowEvent"
-import { TypeModifyAudioState } from "./contexts"
 
 // Functions
 export type TypeUpdateCanvasVolume = {
     canvasLevelRef: React.MutableRefObject<HTMLCanvasElement>,
     AudioState: TypeAudioConfig,
-    ModifyState: TypeModifyAudioState,
+    ModifyState: Dispatch<SetStateAction<number>>,
     Volume: number
 }
 

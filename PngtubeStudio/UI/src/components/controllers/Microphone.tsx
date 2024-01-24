@@ -16,11 +16,13 @@ export default function Microphone() {
 
     const { Volume } = useMicrophone();
 
+    const [Audio, setAudio] = useState(0)
+
     useEffect(() => {
         UpdateCanvasVolume({
             canvasLevelRef,
             AudioState,
-            ModifyState,
+            ModifyState: setAudio,
             Volume
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +40,7 @@ export default function Microphone() {
             }} className="FooBar-Microphone-Target">
                 <p className="FooBar-Microphone-Target-Elementor">Amplificador: {AudioState.Amplifier}</p>
             </div>
-            <p id="FooBar-Microphone-Counter">{AudioState.Audio}</p>
+            <p id="FooBar-Microphone-Counter">{Audio}</p>
             <div id="FooBar-Microphone-Controls">
                 <div id="FooBar-Microphone-Amplifier">
                     <input type="range" id="FooBar-Microphone-Amplifier-Slider" value={AudioState.Amplifier} min={0} max={200}

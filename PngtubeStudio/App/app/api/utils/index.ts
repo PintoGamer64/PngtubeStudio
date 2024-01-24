@@ -1,9 +1,8 @@
-import { readFile } from "node:fs/promises";
+import { TypeBaseConfig, TypeModelsConfigIndividual } from "../../types";
+import { readFileSync } from "node:fs";
 
 export async function readJSON(route: string) {
-    const file = await readFile(route, {
-        encoding: 'utf-8'
-    })
-
-    return JSON.parse(file)
+    return JSON.parse(
+        readFileSync(route, { encoding: 'utf-8' })
+    )
 }

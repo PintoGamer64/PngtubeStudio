@@ -1,18 +1,19 @@
 // Modules
-import { useReducer } from "react";
+import { useContext, useReducer } from "react";
 
-import { AudioContext_Def } from "..";
+import { AudioContext_Def, SettingsContext } from "..";
 import { TypeAudioConfig } from "../../types/WindowEvent";
 import { Contextinterface, TypeAudioReducerSettings } from "../../types/contexts";
 
 export default function AudioProvider({ children }: Contextinterface) {
 
+    const { SettingsState } = useContext(SettingsContext);
+
     const DefaultValues: TypeAudioConfig = {
         Amplifier: 100,
-        Audio: 0,
         Sensibility: 50,
         State: true,
-        FftSize: 4096
+        FftSize: SettingsState.Config.AudioFftsize
     }
 
     function reducer(state: TypeAudioConfig, { action, value }: TypeAudioReducerSettings) {

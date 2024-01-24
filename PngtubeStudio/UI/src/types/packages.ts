@@ -27,6 +27,11 @@ export type CheckboxType = {
     ChangeCondition?: boolean
 }
 
+export type SelectType = {
+    Execute: (value: string) => void,
+    Complement: TypeComplement
+}
+
 export type ColorType = {
     Execute: (args?: any) => void,
     Complement: TypeComplement

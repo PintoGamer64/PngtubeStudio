@@ -7,6 +7,8 @@
     top: 0;
     left: 0;
     background: #00000050;
+    padding: 10px 0 10px 20px;
+    box-sizing: border-box;
 }
 
 #SettingsMain {
@@ -22,6 +24,7 @@
 #SettingsList {
     display: grid;
     grid-area: navigator;
+    min-width: 200px;
     place-items: center;
 }
 
@@ -54,6 +57,7 @@
 #SettingsView {
     grid-area: viewer;
     padding: 0 28px 8px 20px;
+    min-width: 490px;
     display: grid;
     grid-template:
         "tool" 80px
@@ -95,6 +99,7 @@
 
 #SettingsView-Content {
     width: 100%;
+    position: relative;
     box-sizing: border-box;
     grid-area: content;
     height: 100%;
@@ -140,6 +145,17 @@
 
 .SettingsList-Content-Scroll-Element:nth-child(even) {
     margin: 5px 0;
+}
+
+.OptionsElement-Execution-Select {
+    appearance: none;
+    text-align: center;
+    width: 100%;
+    border-radius: 4px;
+    outline: 1px solid #000;
+    height: 100%;
+    font-weight: bold;
+    font-size: medium;
 }
 
 .SettingsRouter-Selected:before {
@@ -221,11 +237,12 @@
 
 .OptionsElement-Execution-Input {
     position: relative;
-    background: #00000030;
+    background: #ffffff;
     appearance: none;
     display: flex;
     width: 35px;
     height: 12.5px;
+    border: 1px solid #000000;
     border-radius: 7.5px;
     transition: all .2s ease;
     align-items: center
@@ -243,9 +260,8 @@
 .OptionsElement-Execution-InputColor {
     appearance: none;
     width: 100px;
-    border-radius: 7.5px;
     border: none;
-    background: #00000030;
+    background: transparent;
     cursor: pointer;
 }
 
@@ -261,4 +277,44 @@
     transition: all .2s ease;
     outline: 1px solid #00ff00;
     background: #00ff00;
+}
+
+#SettingsView-Content-Confirm {
+    position: absolute;
+    bottom: 0;
+    height: 35px;
+    box-sizing: border-box;
+    border-radius: 2.5px;
+    width: 100%;
+    background: #00000030;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.SettingsView-Content-Confirm-Options_Buttons {
+    width: 90px;
+    border: none;
+    height: 25px;
+    color: #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+#SettingsView-Content-Confirm-Options_Discard {
+    margin: 0 10px 0 0;
+    background: transparent;
+}
+
+#SettingsView-Content-Confirm-Options_Discard:hover {
+    transform: scale(0.9);
+    background: #ffffff
+}
+
+#SettingsView-Content-Confirm-Options_Save {
+    background: #04dc1e
+}
+
+#SettingsView-Content-Confirm-Options_Save:hover {
+    transform: scale(0.9);
 }

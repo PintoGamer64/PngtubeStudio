@@ -1,22 +1,39 @@
 // Modules
+import { useReducer } from "react";
 import { AvatarsContext } from "..";
 import usePngtubeStudioAPI from "../../hooks/PngtubeStudioAPI";
 import { TypeModelsConfig } from "../../types/WindowEvent";
-import { Contextinterface } from "../../types/contexts";
+import { Contextinterface, typeModelReducerSettings } from "../../types/contexts";
 
 export default function AvatarsProvider({ children }: Contextinterface) {
 
     const { Get } = usePngtubeStudioAPI();
 
-    const Models: TypeModelsConfig = {
+    const DefaultValues: TypeModelsConfig = {
         Data: Get.Models("getModels"),
         Select: 1
     }
 
+    function reducer(state: TypeModelsConfig, { action, value }: typeModelReducerSettings) {
+        return {
+            ...state,
+            [action]: value
+        }
+    }
+
+    const [state, dispatch] = useReducer(reducer, DefaultValues);
+
+    function ModifyState({ action, value }: typeModelReducerSettings): void {
+        dispatch({
+            action,
+            value
+        })   
+    }
 
     return (
         <AvatarsContext.Provider value={{
-            AvatarsState: Models
+            AvatarsState: state,
+            ModifyState
         }}>
             {children}
         </AvatarsContext.Provider>

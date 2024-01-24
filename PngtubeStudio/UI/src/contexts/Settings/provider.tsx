@@ -32,13 +32,37 @@ export default function SettingsProvider({ children }: Contextinterface) {
         dispatch({
             action,
             value
-        })   
+        })
+    }
+
+    function ModifyAll(value: TypeBaseConfig): void {
+        dispatch({
+            action: 'Config',
+            value: value.Config
+        })
+        dispatch({
+            action: 'Model',
+            value: value.Model
+        })
+        dispatch({
+            action: 'Avatars',
+            value: value.Avatars
+        })
+        dispatch({
+            action: 'Wallpapers',
+            value: value.Wallpapers
+        })
+        dispatch({
+            action: 'Resources',
+            value: value.Resources
+        })
     }
 
     return (
         <SettingsContext.Provider value={{
             SettingsState: state,
-            ModifyState
+            ModifyState,
+            ModifyAll
         }}>
             {children}
         </SettingsContext.Provider>

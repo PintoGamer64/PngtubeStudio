@@ -8,14 +8,17 @@ import { PropagtorStructureComponents, PropagtorStructureList } from "../types/p
  */
 /* export  */
 
-import { MemoryContext, SettingsContext } from "../contexts"
+import { AudioContext_Def, MemoryContext, SettingsContext } from "../contexts"
 import Checkbox from '../components/packages/Checkbox';
 import Color from '../components/packages/Color';
+import Select from '../components/packages/Select';
 
 export default function Contants() {
     const { MemoryState, ModifyState: ModifyMemory } = useContext(MemoryContext)
-    
+
     const { SettingsState, ModifyState: ModifySettings } = useContext(SettingsContext);
+
+    const { AudioState, ModifyState: ModifyAudio } = useContext(AudioContext_Def);
 
     // Functions
     function CustomBackground() {
@@ -54,9 +57,31 @@ export default function Contants() {
                     colorBackground: color
                 }
             }
+        });
+    }
+
+    function ChangeFftsize(value: string) {
+        ModifySettings({
+            action: 'Config',
+            value: {
+                ...SettingsState.Config,
+                AudioFftsize: parseInt(value),
+                Custom: {
+                    ...SettingsState.Config.Custom
+                }
+            }
+        });
+        ModifyAudio({
+            action: 'FftSize',
+            value: parseInt(value)
         })
     }
-    
+
+    // Miscelaneo
+
+    const VoiceFftsizes: number[] = [32, 64, 128, 256, 512, 1024, 2048, 4096]
+
+    // Config
     const SettingsRoutes: PropagtorStructureComponents[] = [
         {
             Id: 1,
@@ -77,6 +102,19 @@ export default function Contants() {
                 Definition: "Escoge el color de fondo que quieras",
                 value: SettingsState.Config.Custom.colorBackground
             }
+        }
+    ]
+
+    const VoiceRoutes: PropagtorStructureComponents[] = [
+        {
+            Id: 1,
+            Component: Select,
+            Complement: {
+                Text: "Tamaño de Buffer",
+                Definition: "Aumentara la capacidad de deteccion (puede generar problemas de rendimiento)",
+                value: `${AudioState.FftSize}`
+            },
+            Execute: ChangeFftsize
         }
     ]
 
@@ -112,6 +150,10 @@ export default function Contants() {
 
     return {
         SettingsListDetails,
-        SettingsRoutes
+        SettingsRoutes,
+        VoiceRoutes,
+        consts: {
+            VoiceFftsizes
+        }
     }
 }

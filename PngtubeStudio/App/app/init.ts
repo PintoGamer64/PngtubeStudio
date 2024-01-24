@@ -16,6 +16,7 @@ export default function InitProcess() {
         Avatars: `${join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars')}`,
         Model: 'Ookami',
         Config: {
+            AudioFftsize: 64,
             hardwareAcceleration: true,
             trayMenu: true,
             Custom: {

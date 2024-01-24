@@ -18,8 +18,6 @@ export default function Main() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const ModelViewerStyle = useMemo(() => ImgURL(`${SettingsState.Wallpapers}\\${SettingsState.Config.Custom.wallpaper}.png`), [SettingsState.Config.Custom.type, SettingsState.Config.Custom.colorBackground])
 
-    console.log(SettingsState.Config.Custom.colorBackground);
-
     return (
         <>
             <div id="ModelViewer" style={ModelViewerStyle} className={

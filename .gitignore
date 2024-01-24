@@ -120,3 +120,6 @@ PngtubeStudio/App/.vite/
 # Electron-Forge
 PngtubeStudio/App/out/
 PngtubeStudio/App/dist/
+
+# Extras
+scc.exe

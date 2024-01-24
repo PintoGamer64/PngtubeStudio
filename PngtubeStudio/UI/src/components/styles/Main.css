@@ -33,9 +33,32 @@
     margin: 0 10px 0 0;
     position: absolute;
     z-index: 1;
+    overflow: hidden;
     width: 100px;
-    height: 80%;
+    height: 370px;
     transition: all .15s ease;
+    overflow-y: auto;
+}
+
+#AvatarShowcase::-webkit-scrollbar {
+    overflow: hidden;
+    width: 2px;
+    box-sizing: border-box
+}
+
+#AvatarShowcase::-webkit-scrollbar-track {
+    background-color: transparent;
+    width: 2px;
+}
+
+#AvatarShowcase::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    width: 2px;
+}
+
+#AvatarShowcase:hover::-webkit-scrollbar-thumb {
+    width: 2px;
+    background: #000000;
 }
 
 .AvatarShowcase-Active {
@@ -57,7 +80,6 @@
     margin: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .AvatarShowcase-List-Elements {
@@ -78,6 +100,7 @@
 }
 
 .AvatarShowcase-List-AvatarName {
+    margin: 5px 0 0 0;
     font-weight: bold;
 }
 

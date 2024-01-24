@@ -1,17 +1,20 @@
 // Modules
-import { useReducer } from 'react';
+import { useContext, useReducer } from 'react';
 
-import { MemoryContext } from "..";
+import { MemoryContext, SettingsContext } from "..";
 import { Contextinterface, DefaultValuesMemory, typeMemoryReducerSettings } from "../../types/contexts";
 
 export default function MemoryProvider({ children }: Contextinterface) {
+
+    const { SettingsState } = useContext(SettingsContext);
 
     const DefaultValues: DefaultValuesMemory = {
         Fullscreen: false,
         Settings: false,
         SettingRouter: 'Appareance',
         PictureInPicture: false,
-        AvatarsShowcase: false
+        AvatarsShowcase: false,
+        SettingsPreload: SettingsState
     }
 
     function reducer(state: DefaultValuesMemory, { action, value }: typeMemoryReducerSettings) {
@@ -29,6 +32,8 @@ export default function MemoryProvider({ children }: Contextinterface) {
             value
         })   
     }
+
+    console.log(state);
 
     return (
         <MemoryContext.Provider value={{

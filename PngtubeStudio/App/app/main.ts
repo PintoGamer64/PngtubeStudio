@@ -1,11 +1,22 @@
-import { app, BrowserWindow, ipcMain, webFrame } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import PngtubeStudioAPI from "./api/PngtubeAPI";
 import InitProcess from "./init";
+import { readJSON } from "./api/utils";
+import { homedir } from "os";
+import { TypeBaseConfig } from "./types";
 
 let mainWindow: BrowserWindow;
 
-InitProcess().__Init__()
+InitProcess().__Init__();
+
+(async () => {
+  const HardAcc: TypeBaseConfig = await readJSON(join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings.json'))
+
+  if (HardAcc.Config.hardwareAcceleration) {
+    app.disableHardwareAcceleration() 
+  }
+})()
 
 function createWindow() {
   mainWindow = new BrowserWindow({

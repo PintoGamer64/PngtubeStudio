@@ -11,7 +11,7 @@ export default function ListSettings() {
         <aside id="SettingsList">
             <div id="SettingsList-Content">
                 <picture id="SettingsList-Content-Image">
-                    <img src={ResolveRouteLeft(`${SettingsState.Resources}\\Logo2.png`)} alt="PngutbeStudio" id="SettingsList-Content-Image-Element" />
+                    <img src={ResolveRouteLeft(`${SettingsState.Resources}\\Logo.png`)} alt="PngutbeStudio" id="SettingsList-Content-Image-Element" />
                 </picture>
                 <div id="SettingsList-Content-Scroll">
                     <SettingsListPropagator />

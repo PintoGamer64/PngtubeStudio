@@ -28,3 +28,10 @@ export const DownloadResourcesLink = [
         url: "https://raw.githubusercontent.com/PintoGamer64/PngtubeStudio/main/Assets/PNGtube_Logo_Github.png"
     }
 ]
+
+export const DownloadWallpapersLink = [
+    {
+        file: "Default.png",
+        url: "https://raw.githubusercontent.com/PintoGamer64/PngtubeStudio/main/Assets/Default.png"
+    }
+]

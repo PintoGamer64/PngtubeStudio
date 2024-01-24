@@ -11,6 +11,7 @@ export type TypeModelsConfigIndividual = {
     Date: string,
     Image: string,
     Data: {
+        Router: string
         States: [
             string[]
         ]

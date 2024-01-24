@@ -6,7 +6,7 @@ import { get } from 'node:https';
 
 // Types
 import { TypeBaseConfig, TypeModelsConfig } from "./types";
-import { DownloadModels, DownloadResourcesLink, pathsConfig } from "./constants";
+import { DownloadModels, DownloadResourcesLink, DownloadWallpapersLink, pathsConfig } from "./constants";
 import { DownloadFiles } from "./utils";
 
 export default function InitProcess() {
@@ -35,6 +35,7 @@ export default function InitProcess() {
                 Date: "2023-03-15T05:00:00.000Z",
                 Image: "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami\\Ookami.png",
                 Data: {
+                    Router: "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami",
                     States: [
                         ["Ookami", "Ookami2"]
                     ]
@@ -85,7 +86,19 @@ export default function InitProcess() {
             const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars', Download.model, Download.file)
             if (!existsSync(searchPath)) {
                 const archivoStream = createWriteStream(searchPath);
-
+                DownloadFiles({
+                    DownloadUrl: Download.url,
+                    FileLocation: searchPath,
+                    FileStream: archivoStream
+                })
+            }
+        })
+    }
+    function CreateWallpapers() {
+        DownloadWallpapersLink.map(Download => {
+            const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Wallpapers', Download.file)
+            if (!existsSync(searchPath)) {
+                const archivoStream = createWriteStream(searchPath);
                 DownloadFiles({
                     DownloadUrl: Download.url,
                     FileLocation: searchPath,
@@ -99,6 +112,7 @@ export default function InitProcess() {
         CreateConfigBase();
         CreateConfigModels();
         CreateResources();
+        CreateWallpapers();
         CreateAvatars();
     }
     return {

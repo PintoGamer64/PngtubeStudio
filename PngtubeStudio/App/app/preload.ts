@@ -23,7 +23,6 @@ function Settings(typeEvent: TypeEventSettings) {
 }
 
 function SendSettings(typeEvent: TypeEventSettings, settingsValue?: TypeBaseConfig) {
-    console.log(settingsValue);
     return ipcRenderer.send(typeEvent, settingsValue);
 }
 

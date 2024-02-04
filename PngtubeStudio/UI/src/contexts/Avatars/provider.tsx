@@ -14,6 +14,8 @@ export default function AvatarsProvider({ children }: Contextinterface) {
         Select: 1
     }
 
+    console.log(DefaultValues);
+
     function reducer(state: TypeModelsConfig, { action, value }: typeModelReducerSettings) {
         return {
             ...state,

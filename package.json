@@ -5,7 +5,7 @@
   "scripts": {
     "start:app": "npm start -w PngtubeStudio/App && cls",
     "build:ui": "npm run build -w PngtubeStudio/UI && cls",
-    "build": "npm run make -w PngtubeStudio/App",
+    "build": "npm run build:ui && npm run make -w PngtubeStudio/App",
     "test": "npm run dev -w PngtubeStudio/UI && cls"
   },
   "workspaces": [
@@ -30,8 +30,5 @@
     "url": "https://github.com/PintoGamer64/PngtubeStudio/issues",
     "email": "pintogamer64@gmail.com"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "electron-devtools-installer": "^3.2.0"
-  }
+  "license": "ISC"
 }

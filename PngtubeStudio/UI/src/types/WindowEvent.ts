@@ -10,7 +10,6 @@ export type TypeModelConfigBase = {
     Date: string,
     Image: string,
     Data: {
-        Router: "C:\\Users\\JoanCardozo\\AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami"
         States: [
             string[]
         ]

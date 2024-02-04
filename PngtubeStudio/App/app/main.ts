@@ -2,19 +2,38 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import PngtubeStudioAPI from "./api/PngtubeAPI";
 import InitProcess from "./init";
-import { readJSON } from "./api/utils";
 import { homedir } from "os";
 import { TypeBaseConfig } from "./types";
+import { DecryptData, ImageBase64, ReadPasswords } from "./utils";
+import { existsSync, writeFileSync } from "node:fs";
 
 let mainWindow: BrowserWindow;
 
-(async () => {
-  const HardAcc: TypeBaseConfig = await readJSON(join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings.json'))
+ReadPasswords
+  .then(async (value) => {
 
-  if (HardAcc.Config.hardwareAcceleration) {
-    app.disableHardwareAcceleration() 
-  }
-})()
+    existsSync(join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings')) && (async () => {
+      const HardAcc: TypeBaseConfig = await DecryptData(
+        join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings'),
+        value.key,
+        value.iv,
+      ).catch(() => console.log(">>>> Error al leer el archivo"))
+
+      if (HardAcc.Config.hardwareAcceleration) {
+        app.disableHardwareAcceleration()
+      }
+    })()
+  })
+
+writeFileSync(
+  join(homedir(), `AppData\\Roaming\\PNGtubeSettings\\Ookami.txt`),
+  ImageBase64(join(homedir(), `AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami\\Ookami.png`))
+)
+
+writeFileSync(
+  join(homedir(), `AppData\\Roaming\\PNGtubeSettings\\Ookami2.txt`),
+  ImageBase64(join(homedir(), `AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami\\Ookami2.png`))
+)
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -35,12 +54,11 @@ function createWindow() {
   /* mainWindow.webContents.openDevTools(); */
 }
 
-app.whenReady().then( async () => {
+app.whenReady().then(async () => {
 
   await InitProcess().__Init__();
 
-  // Create Window
-  createWindow();
+  createWindow()
 
   app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();

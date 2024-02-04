@@ -2,7 +2,6 @@ import { useEffect, useContext, useRef, useMemo } from 'react';
 import UpdateAvatarStyleClass from '../../helpers/UpdateAvatarStyleClass';
 import { AudioContext_Def, AvatarsContext } from '../../contexts';
 import useMicrophone from '../../hooks/EventMicrophone';
-import { ResolveRouteLeft } from '../../utils';
 
 export default function ModelViewer() {
 
@@ -22,8 +21,8 @@ export default function ModelViewer() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Volume])
 
-    const State_1 = ResolveRouteLeft(`${AvatarsState.Data[AvatarsState.Select - 1].Data.Router}\\${AvatarsState.Data[AvatarsState.Select - 1].Data.States[0][0]}.png`);
-    const State_2 = ResolveRouteLeft(`${AvatarsState.Data[AvatarsState.Select - 1].Data.Router}\\${AvatarsState.Data[AvatarsState.Select - 1].Data.States[0][1]}.png`);
+    const State_1 = AvatarsState.Data[AvatarsState.Select - 1].Data.States[0][0]
+    const State_2 = AvatarsState.Data[AvatarsState.Select - 1].Data.States[0][1]
 
     const ActualModelStyle = useMemo(() => {
         if (AudioState.State) {

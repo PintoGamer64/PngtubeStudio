@@ -2,26 +2,40 @@ import { dialog, ipcMain } from "electron";
 import { homedir } from "os";
 import { join } from "path";
 import { readJSON } from "./utils";
-import { TypeBaseConfig, TypeModelsConfig, TypeModelsConfigIndividual } from "../types";
+import { TypeModelsConfigIndividual } from "../types";
 import { writeFileSync } from "node:fs";
 import { writeFile } from "fs";
+import { DecryptData, EncriptData, ReadPasswords } from "../utils";
 
 export default function PngtubeStudioAPI() {
   //---------------------------------------------------------//
   ipcMain.on('getModels', async ev => {
-    const Models: TypeModelsConfig = await readJSON(
-      join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json')
-    ).catch(() => console.log("Error al leer el archivo"))
-    ev.returnValue = Models
+
+    ReadPasswords
+      .then(async ({ key, iv }) => {
+        ev.returnValue = await DecryptData(
+          join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars'),
+          key,
+          iv,
+        ).catch(() => console.log("Error al leer el archivo"))
+      })
+      .catch(() => console.log("Failed to get models"))
   })
   //---------------------------------------------------------//
   ipcMain.on('getSettings', async ev => {
-    ev.returnValue = await readJSON(
-      join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings.json')
-    ).catch(() => console.log("Error al leer el archivo"))
+
+    ReadPasswords
+      .then(async (value) => {
+        ev.returnValue = await DecryptData(
+          join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings'),
+          value.key,
+          value.iv,
+        ).catch(() => console.log("Error al leer el archivo"))
+      })
+      .catch(() => console.log("Failed to get Settings"))
   })
   //---------------------------------------------------------//
-  ipcMain.on('getFile', async ev => {
+  ipcMain.on('getFile', async () => {
     const SelectedFile = dialog.showOpenDialogSync({
       properties: ['openFile'],
       filters: [{
@@ -30,31 +44,63 @@ export default function PngtubeStudioAPI() {
       }]
     })
 
-    if (SelectedFile.length > 0) {
-      const ModelLoaded: TypeModelsConfigIndividual = await readJSON(
-        SelectedFile[0]
-      ).catch(() => console.log("Error al leer el archivo"))
-  
-      const AvatarsFile = await readJSON(
-        join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json')
-      ).catch(() => console.log("Error al leer el archivo"))
-  
-      AvatarsFile.push(ModelLoaded)
-  
-      writeFileSync(
-        join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json'),
-        JSON.stringify(AvatarsFile, null, 4),
-        { encoding: 'utf-8' }
+    if (SelectedFile && SelectedFile.length > 0) {
+
+      console.log(SelectedFile);
+
+      ReadPasswords
+        .then(async ({ key, iv }) => {
+          /* const ModelLoaded: TypeModelsConfigIndividual = await DecryptData(
+            SelectedFile[0],
+            key,
+            iv
+          ); */
+          const ModelLoaded: TypeModelsConfigIndividual = await readJSON(SelectedFile[0]);
+          const AvatarsFile = await DecryptData(
+            join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars'),
+            key,
+            iv
+          );
+          AvatarsFile.push(ModelLoaded);
+          writeFileSync(
+            join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars'),
+            await EncriptData(
+              key,
+              iv,
+              JSON.stringify(AvatarsFile, null, 4)
+            ),
+            { encoding: 'utf-8' }
+          )
+
+          console.log(await DecryptData(
+            join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars'),
+            key,
+            iv
+          ));
+
+    })
+    .catch(err => console.log("No se pudo actualizar los modelos"))
+
+  /* 
+  writeFileSync(
+    join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json'),
+    JSON.stringify(AvatarsFile, null, 4),
+    { encoding: 'utf-8' }
+  ) */
+}
+  })
+//---------------------------------------------------------//
+ipcMain.on('sendSettings', (ev, value) => {
+  ReadPasswords
+    .then(async ({ iv, key }) => {
+      writeFile(
+        join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings'),
+        await EncriptData(key, iv, JSON.stringify(value)),
+        (err) => {
+          if (err) console.log("Error to save config")
+          else console.log("loadded file");
+        }
       )
-    }
-  })
-  //---------------------------------------------------------//
-  ipcMain.on('sendSettings', (ev, value) => {
-    writeFile(
-      join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings.json'),
-      JSON.stringify(value, null, 4), () => {
-        console.log("loadded file");
-      }
-    )
-  })
+    })
+})
 }

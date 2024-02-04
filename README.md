@@ -10,16 +10,14 @@ This project seeks to be an alternative for PNGtubers, integrating tools more de
 
 ```bash
 $ git clone -GITHUB_URL-
+$ cd -FOLDER_CLONE-
 $ npm install
 ```
 
-## Wireframes
-
-These are the wireframes ***pending to submit***.
-
 ## Console Scripts
 
-#### *Available Scripts: Frontend*
+#### *Available Scripts*
 
 - **`start:app`** initialize the Electron model with the react build *(For development)*
 - **`build:ui`** generates a build of the UI created with ReactJs *(Required to develop and compile)*
+- **`build`** generates the program installer

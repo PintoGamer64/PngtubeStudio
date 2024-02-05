@@ -21,15 +21,15 @@ export default function ModelViewer() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Volume])
 
-    const State_1 = AvatarsState.Data[AvatarsState.Select - 1].Data.States[0][0]
-    const State_2 = AvatarsState.Data[AvatarsState.Select - 1].Data.States[0][1]
+    const State_1 = useMemo(() => AvatarsState.Data[AvatarsState.Select - 1].Data.States[0][0], [AvatarsState.Data, AvatarsState.Select])
+    const State_2 = useMemo(() => AvatarsState.Data[AvatarsState.Select - 1].Data.States[0][1], [AvatarsState.Data, AvatarsState.Select])
 
     const ActualModelStyle = useMemo(() => {
         if (AudioState.State) {
-            if ((Volume / AudioState.Amplifier) * 100 < (AudioState.Sensibility / 100) * 100) {
+            if ((Volume / AudioState.Amplifier) * 100 <= (AudioState.Sensibility / 100) * 100) {
                 return State_1
             }
-            if ((Volume / AudioState.Amplifier) * 100 > (AudioState.Sensibility / 100) * 100) {
+            if ((Volume / AudioState.Amplifier) * 100 >= (AudioState.Sensibility / 100) * 100) {
                 return State_2
             }
         } else {

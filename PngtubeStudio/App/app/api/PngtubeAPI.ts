@@ -2,10 +2,10 @@ import { dialog, ipcMain } from "electron";
 import { homedir } from "os";
 import { join } from "path";
 import { readJSON } from "./utils";
-import { TypeModelsConfigIndividual } from "../types";
+import { TypeModelsConfig, TypeModelsConfigIndividual, TypeSubmnitModel } from "../types";
 import { writeFileSync } from "node:fs";
-import { writeFile } from "fs";
-import { DecryptData, EncriptData, ReadPasswords } from "../utils";
+import { createWriteStream, writeFile } from "fs";
+import { DecryptData, DownloadFiles, EncriptData, ImageBase64, ReadPasswords } from "../utils";
 
 export default function PngtubeStudioAPI() {
   //---------------------------------------------------------//
@@ -43,64 +43,66 @@ export default function PngtubeStudioAPI() {
         extensions: ['pngtubestudio']
       }]
     })
-
     if (SelectedFile && SelectedFile.length > 0) {
-
-      console.log(SelectedFile);
-
       ReadPasswords
         .then(async ({ key, iv }) => {
-          /* const ModelLoaded: TypeModelsConfigIndividual = await DecryptData(
-            SelectedFile[0],
-            key,
-            iv
-          ); */
-          const ModelLoaded: TypeModelsConfigIndividual = await readJSON(SelectedFile[0]);
-          const AvatarsFile = await DecryptData(
+          let memory: string[] = [], searchPath, i = 0;
+          console.log(SelectedFile[0]);
+          const ModelLoad: TypeSubmnitModel = await readJSON(SelectedFile[0]);
+          const AvatarsFile: TypeModelsConfig = await DecryptData(
             join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars'),
             key,
             iv
-          );
-          AvatarsFile.push(ModelLoaded);
+          )
+          console.log(AvatarsFile);
+          ModelLoad.States.map(async value => {
+            searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars', ModelLoad.Name, `${ModelLoad.Name}${i === 0 ? '' : i + 1}.png`);
+            const data = createWriteStream(searchPath);
+            await DownloadFiles({
+              DownloadUrl: value,
+              FileLocation: searchPath,
+              FileStream: data
+            });
+            memory.push(ImageBase64(searchPath));
+            i++
+          })
+
+          AvatarsFile.push({
+            Id: AvatarsFile.length + 1,
+            Data: {
+              States: [
+                memory
+              ]
+            },
+            Date: ModelLoad.Date,
+            Image: join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars', ModelLoad.Name, `${ModelLoad.Name}.png`),
+            Name: ModelLoad.Name,
+            Owner: ModelLoad.Owner,
+            URL: ModelLoad.URL
+          })
+
           writeFileSync(
             join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars'),
-            await EncriptData(
-              key,
-              iv,
-              JSON.stringify(AvatarsFile, null, 4)
-            ),
-            { encoding: 'utf-8' }
+            await EncriptData(key, iv, JSON.stringify(AvatarsFile)),
+            { encoding: "utf-8" }
           )
 
-          console.log(await DecryptData(
-            join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars'),
-            key,
-            iv
-          ));
-
-    })
-    .catch(err => console.log("No se pudo actualizar los modelos"))
-
-  /* 
-  writeFileSync(
-    join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\Avatars\\avatars.json'),
-    JSON.stringify(AvatarsFile, null, 4),
-    { encoding: 'utf-8' }
-  ) */
-}
+          console.log(AvatarsFile)
+        })
+    }
   })
-//---------------------------------------------------------//
-ipcMain.on('sendSettings', (ev, value) => {
-  ReadPasswords
-    .then(async ({ iv, key }) => {
-      writeFile(
-        join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings'),
-        await EncriptData(key, iv, JSON.stringify(value)),
-        (err) => {
-          if (err) console.log("Error to save config")
-          else console.log("loadded file");
-        }
-      )
-    })
-})
+  //---------------------------------------------------------//
+  ipcMain.on('sendSettings', (ev, value) => {
+    ReadPasswords
+      .then(async ({ iv, key }) => {
+        writeFile(
+          join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\settings'),
+          await EncriptData(key, iv, JSON.stringify(value)),
+          (err) => {
+            if (err) console.log("Error to save config")
+            else console.log("loadded file");
+          }
+        )
+      })
+  })
 }

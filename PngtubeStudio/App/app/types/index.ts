@@ -18,6 +18,16 @@ export type TypeModelsConfigIndividual = {
     URL: string
 }
 
+export type TypeSubmnitModel = {
+    Id: string | number,
+    Name: string,
+    Owner: string,
+    Date: string,
+    Image: string,
+    States: string[],
+    URL: string
+}
+
 export type TypeModelsConfig = TypeModelsConfigIndividual[]
 export type TypeBaseConfig = {
     Resources: string,
@@ -25,7 +35,7 @@ export type TypeBaseConfig = {
     Model: string,
     Avatars: string,
     Config: {
-        AudioFftsize:  32 | 64 | 128 | 256 | 512 | 1024 | 2048 | 4096,
+        AudioFftsize: 32 | 64 | 128 | 256 | 512 | 1024 | 2048 | 4096,
         hardwareAcceleration: boolean,
         trayMenu: boolean,
         Custom: {

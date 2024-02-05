@@ -5,7 +5,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import { createCipheriv, createDecipheriv } from "node:crypto";
 
-export function DownloadFiles({
+export async function DownloadFiles({
     DownloadUrl,
     FileStream,
     FileLocation
@@ -82,7 +82,7 @@ export async function DecryptData(fileLoc: string, key: Buffer, iv: Buffer) {
     }
 }
 
-export function ImageBase64(img: string) {
+export function ImageBase64(img: string): string {
     const bitmapImage = readFileSync(img)
     return `data:image/png;base64,${Buffer.from(bitmapImage).toString('base64')}`;
 }

@@ -25,16 +25,6 @@ ReadPasswords
     })()
   })
 
-writeFileSync(
-  join(homedir(), `AppData\\Roaming\\PNGtubeSettings\\Ookami.txt`),
-  ImageBase64(join(homedir(), `AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami\\Ookami.png`))
-)
-
-writeFileSync(
-  join(homedir(), `AppData\\Roaming\\PNGtubeSettings\\Ookami2.txt`),
-  ImageBase64(join(homedir(), `AppData\\Roaming\\PNGtubeSettings\\Avatars\\Ookami\\Ookami2.png`))
-)
-
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1280,

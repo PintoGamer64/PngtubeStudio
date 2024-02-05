@@ -2,7 +2,6 @@
 import { mkdirSync, writeFileSync, existsSync, createWriteStream, unlink, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
-import { get } from 'node:https';
 
 // Types
 import { TypeBaseConfig, TypeModelsConfig } from "./types";

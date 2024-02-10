@@ -1,16 +1,17 @@
 {
-  "name": "new_pngtubestudio",
+  "name": "pngtubestudio",
+  "productName": "PngtubeStudio",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dedicated app for vtuber streamers using the PNG format",
+  "main": ".vite/build/main.js",
+  "icon": "assets/Ookami.ico",
   "scripts": {
-    "start:app": "npm start -w PngtubeStudio/App && cls",
-    "build:ui": "npm run build -w PngtubeStudio/UI && cls",
-    "build": "npm run build:ui && npm run make -w PngtubeStudio/App",
-    "test": "npm run dev -w PngtubeStudio/UI && cls"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx ."
   },
-  "workspaces": [
-    "PngtubeStudio/*"
-  ],
   "keywords": [
     "streaming",
     "reactsj",
@@ -20,15 +21,31 @@
   ],
   "author": {
     "name": "PintoGamer64",
-    "url": "https://github.com/PintoGamer64",
     "email": "pintogamer64@gmail.com"
   },
-  "repository": {
-    "url": "https://github.com/PintoGamer64/PngtubeStudio"
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
+    "@electron-forge/plugin-vite": "^7.2.0",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "electron": "28.2.2",
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1",
+    "ts-node": "^10.9.2",
+    "typescript": "~4.5.4"
   },
-  "bugs": {
-    "url": "https://github.com/PintoGamer64/PngtubeStudio/issues",
-    "email": "pintogamer64@gmail.com"
-  },
-  "license": "ISC"
+  "dependencies": {
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }

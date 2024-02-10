@@ -12,7 +12,7 @@ const config: ForgeConfig = {
   rebuildConfig: {},
   makers: [new MakerSquirrel({
     authors: "PintoGamer64",
-    iconUrl: "C:/Users/JoanCardozo/Documents/New_PngtubeStudio/Assets/Logo.ico",
+    iconUrl: "https://raw.githubusercontent.com/PintoGamer64/PngtubeStudio/main/Assets/Ookami.ico",
     setupExe: "PngtubeStudio.exe",
     setupIcon: "C:/Users/JoanCardozo/Documents/New_PngtubeStudio/Assets/Ookami.ico"
   }), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],

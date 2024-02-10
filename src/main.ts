@@ -40,7 +40,8 @@ const createWindow = () => {
     minWidth: 1280,
     minHeight: 720,
     titleBarStyle: "hidden",
-    icon: nativeImage.createFromPath("./assets/Icon.jpeg"),
+    icon: join(__dirname, "../../Ookami.ico"),
+    center: true,
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
       webSecurity: false,

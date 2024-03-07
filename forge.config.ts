@@ -7,7 +7,7 @@ import { VitePlugin } from '@electron-forge/plugin-vite';
 
 const config: ForgeConfig = {
   packagerConfig: {
-    asar: true,
+    asar: false,
   },
   rebuildConfig: {},
   makers: [new MakerSquirrel({

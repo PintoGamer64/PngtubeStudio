@@ -1,4 +1,4 @@
-import { readFileSync, unlink } from "node:fs";
+import { readFileSync, unlink, existsSync } from "node:fs";
 import { IntDownloadFiles } from "../modules";
 import { get } from "node:https";
 import { homedir } from "node:os";
@@ -16,7 +16,7 @@ export function DownloadFiles({
         response.pipe(FileStream)
 
         FileStream.on('finish', () => {
-            console.log('Archivo descargado y copiado con éxito');
+            console.log('Archivo descargado y copiado con exito');
         });
 
         FileStream.on('error', (err) => {
@@ -30,22 +30,24 @@ export function DownloadFiles({
 }
 
 export const ReadPasswords: Promise<{ key: Buffer, iv: Buffer }> = new Promise((resolve, reject) => {
-    const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\bin')
-    const JSONvalue: string = readFileSync(
-        searchPath,
-        {
-            encoding: 'utf-8'
-        }
-    )
+    existsSync(join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\bin')) && (() => {
+            const searchPath = join(homedir(), 'AppData\\Roaming\\PNGtubeSettings\\bin')
+            const JSONvalue: string = readFileSync(
+                searchPath,
+                {
+                    encoding: 'utf-8'
+                }
+            )
 
-    const result = JSON.parse(JSONvalue);
-    
-    resolve({
-        key: Buffer.from(result.key, 'hex'),
-        iv: Buffer.from(result.iv, 'hex'),
-    })
+            const result = JSON.parse(JSONvalue);
 
-    reject("no reasean available")
+            resolve({
+                key: Buffer.from(result.key, 'hex'),
+                iv: Buffer.from(result.iv, 'hex'),
+            })
+
+            reject("no reasean available")
+        })()
 })
 
 export async function EncriptData(key: Buffer, iv: Buffer, data: string) {

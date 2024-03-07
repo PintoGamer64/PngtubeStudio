@@ -2,7 +2,7 @@
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 import { contextBridge, ipcRenderer } from "electron";
 // Types
-import { TypeBaseConfig, TypeEventModels, TypeEventSettings, TypeEventWindow } from "./modules";
+import { TypeBaseConfig, TypeEventModels, TypeEventSettings, TypeEventWindow } from "../modules";
 
 /**
  * Ejecuta eventos principales de la ventana

@@ -4,11 +4,11 @@
   "version": "1.0.0",
   "description": "Dedicated app for vtuber streamers using the PNG format",
   "main": ".vite/build/main.js",
-  "icon": "assets/Ookami.ico",
+  "icon": "Ookami.ico",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
+    "build": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx ."
   },
@@ -38,7 +38,6 @@
     "@typescript-eslint/parser": "^5.62.0",
     "electron": "28.2.2",
     "eslint": "^8.56.0",
-    "eslint-plugin-import": "^2.29.1",
     "ts-node": "^10.9.2",
     "typescript": "~4.5.4"
   },
